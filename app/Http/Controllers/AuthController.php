@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // 🔹 1. Register Function
-    public function register(Request $request)
+    //Register Function
+    public function signup(Request $request)
     {
         // Validate the inputs (name, email, password)
         // -> Make sure email is unique, password is confirmed
@@ -35,7 +35,7 @@ class AuthController extends Controller
         return redirect('/dashboard');
     }
 
-    // 🔹 2. Login Function
+    //Login Function
     public function login(Request $request)
     {
         // Validate the input (email and password)
@@ -60,7 +60,7 @@ class AuthController extends Controller
         ]);
     }
 
-    // 🔹 3. Logout Function
+    //3. Logout Function
     public function logout(Request $request)
     {
         // Logs the user out

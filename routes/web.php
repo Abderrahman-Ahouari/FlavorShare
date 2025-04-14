@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 
     
-Route::get('/register', [AuthController::class, 'showsignupForm'])->name('signup');
+Route::get('/signup', [AuthController::class, 'showsignupForm'])->name('signup');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/logout', [AuthController::class, 'logout']);

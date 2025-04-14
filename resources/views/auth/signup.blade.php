@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | FlavorShare</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -33,12 +32,21 @@
         .logo-text {
             font-family: 'cursive', sans-serif;
         }
+
+        .mobile-menu {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-white min-h-screen">
     <!-- Header -->
-    <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center">
-        <a href="#" class="flex items-center">
+    <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center relative">
+        <a href="#" class="flex items-center z-10">
             <span class="logo-text text-2xl font-bold text-black">flavor<span class="text-flavorshare-orange">share</span></span>
         </a>
         
@@ -52,48 +60,62 @@
         </nav>
         
         <!-- Mobile Menu Button -->
-        <button class="md:hidden text-flavorshare-text" id="menu-toggle">
+        <button class="md:hidden text-flavorshare-text z-10" id="menu-toggle">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-screen bg-white z-0 flex flex-col items-center justify-center space-y-6 md:hidden">
+            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
+            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
+            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Account</a>
+            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Login</a>
+            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">SignUp</a>
+        </div>
     </header>
 
     <!-- Main Content -->
     <main class="w-full flex flex-col md:flex-row">
         <!-- Image Section (Hidden on Mobile) -->
-        <div class="hidden md:block w-full md:w-1/2 p-6">
-            <img src="https://png.pngtree.com/png-vector/20250227/ourmid/pngtree-classic-italian-pasta-dish-with-spaghetti-tomato-sauce-and-basil-leaves-png-image_15361866.png" alt="Delicious food dish" class="w-full h-auto rounded-lg object-cover" />
+        <div class="hidden md:block w-full md:w-1/2 p-6 ml-16">
+            <img src="https://samsungfood.com/wp-content/cache/thumb/77/aaa69d2d52e3377_717x650.webp" alt="Delicious food dish" class="w-full h-auto rounded-lg object-cover" />
         </div>
         
         <!-- Form Section -->
-        <div class="w-full md:w-1/2 p-6 md:p-10 bg-gray-100 md:bg-white rounded-lg md:rounded-none">
+        <div class="w-full md:w-1/2 p-6 md:p-10 mr-24 bg-gray-100 md:bg-white rounded-lg md:rounded-none">
             <div class="max-w-md mx-auto">
                 <h1 class="text-3xl font-bold mb-8 text-center md:text-left">Sign up</h1>
                 
-                <form method="POST" action="/register" class="space-y-6">
-                    @csrf
+                <form id="signup-form" method="POST" class="space-y-6">
                     <div>
                         <label for="username" class="block text-flavorshare-orange mb-2">Username</label>
-                        <input type="text" name="username" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <input type="text" id="username" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <p id="username-error" class="text-red-500 text-sm mt-1 hidden"></p>
                     </div>
                     
                     <div>
                         <label for="email" class="block text-flavorshare-orange mb-2">email</label>
-                        <input type="email" name="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <p id="email-error" class="text-red-500 text-sm mt-1 hidden"></p>
                     </div>
                     
                     <div>
                         <label for="password" class="block text-flavorshare-orange mb-2">password</label>
-                        <input type="password" name="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <input type="password" id="password" name="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <p id="password-error" class="text-red-500 text-sm mt-1 hidden"></p>
                     </div>
                     
                     <div>
                         <label for="confirm-password" class="block text-flavorshare-orange mb-2">confirm password</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <input type="password" id="confirm-password" name="confirm-password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <p id="confirm-password-error" class="text-red-500 text-sm mt-1 hidden"></p>
                     </div>
                     
                     <button type="submit" class="w-full py-3 bg-flavorshare-orange text-white rounded-lg hover:bg-orange-500 transition-colors">sign up</button>
+                    
+                    <p id="form-success" class="text-green-500 text-center hidden">Form submitted successfully!</p>
                 </form>
                 
                 <p class="mt-6 text-center">
@@ -172,32 +194,104 @@
     <script>
         // Mobile menu toggle
         const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
         
-        if (menuToggle) {
+        if (menuToggle && mobileMenu) {
             menuToggle.addEventListener('click', () => {
-                // Implementation would go here if we had a mobile dropdown menu to show
-                alert('Mobile menu clicked - would expand navigation menu');
+                mobileMenu.classList.toggle('active');
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                } else {
+                    document.body.style.overflow = ''; // Re-enable scrolling when menu is closed
+                }
             });
         }
         
         // Form validation
-        const form = document.querySelector('form');
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirm-password');
+        const form = document.getElementById('signup-form');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        
+        const usernameError = document.getElementById('username-error');
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+        const confirmPasswordError = document.getElementById('confirm-password-error');
+        const formSuccess = document.getElementById('form-success');
+        
+        function hideAllErrors() {
+            usernameError.classList.add('hidden');
+            emailError.classList.add('hidden');
+            passwordError.classList.add('hidden');
+            confirmPasswordError.classList.add('hidden');
+            formSuccess.classList.add('hidden');
+        }
+        
+        function showError(element, message) {
+            element.textContent = message;
+            element.classList.remove('hidden');
+        }
+        
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
         
         if (form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
+                let isValid = true;
                 
-                // Check if passwords match
-                if (password.value !== confirmPassword.value) {
-                    alert('Passwords do not match!');
-                    return;
+                hideAllErrors();
+                
+                // Validate username
+                if (usernameInput.value.trim() === '') {
+                    showError(usernameError, 'Username is required');
+                    isValid = false;
+                } else if (usernameInput.value.length < 3) {
+                    showError(usernameError, 'Username must be at least 3 characters');
+                    isValid = false;
                 }
                 
-                // Form would submit here in a real implementation
-                alert('Form submitted successfully!');
-                form.reset();
+                // Validate email
+                if (emailInput.value.trim() === '') {
+                    showError(emailError, 'Email is required');
+                    isValid = false;
+                } else if (!validateEmail(emailInput.value)) {
+                    showError(emailError, 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Validate password
+                if (passwordInput.value === '') {
+                    showError(passwordError, 'Password is required');
+                    isValid = false;
+                } else if (passwordInput.value.length < 6) {
+                    showError(passwordError, 'Password must be at least 6 characters');
+                    isValid = false;
+                }
+                
+                // Validate confirm password
+                if (confirmPasswordInput.value === '') {
+                    showError(confirmPasswordError, 'Please confirm your password');
+                    isValid = false;
+                } else if (passwordInput.value !== confirmPasswordInput.value) {
+                    showError(confirmPasswordError, 'Passwords do not match');
+                    isValid = false;
+                }
+                
+                // Submit the form if valid
+                if (isValid) {
+                    // This would typically be an AJAX request to your server
+                    formSuccess.classList.remove('hidden');
+                    form.reset();
+                    
+                    // For demonstration purposes - in a real app you'd submit to a server
+                    setTimeout(() => {
+                        formSuccess.classList.add('hidden');
+                    }, 3000);
+                }
             });
         }
     </script>
