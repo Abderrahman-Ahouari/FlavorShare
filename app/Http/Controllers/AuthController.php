@@ -9,82 +9,93 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    //Register Function
+    // Signup
     public function signup(Request $request)
     {
-        // Validate the inputs (name, email, password)
-        // -> Make sure email is unique, password is confirmed
         $request->validate([
-            'username' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
-        // Create and save the user with hashed password
-        // -> We use Hash::make to store a secure password
         $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Automatically log the user in
-        auth()->login($user);
+        Auth::login($user); 
 
-        // Redirect to a protected page
-        return redirect('/dashboard');
+        return redirect()->route('dashboard'); 
     }
 
-    //Login Function
+    // Login
     public function login(Request $request)
     {
-        // Validate the input (email and password)
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'email'    => 'required|email',
+            'password' => 'required|string',
         ]);
 
-        // Attempt to login with the provided credentials
-        // -> Auth::attempt checks and logs in if correct
-        if (Auth::attempt($credentials)) {
-            // Prevent session fixation attack
-            $request->session()->regenerate();
-
-            // Redirect to intended page (or default)
-            return redirect()->intended('/dashboard');
+        if (Auth::attempt($credentials)) {  
+            $request->session()->regenerate(); 
+            return redirect()->route('dashboard');
         }
 
-        // If login fails, return with an error
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ]);
+        return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
-    //3. Logout Function
+    // Logout
     public function logout(Request $request)
     {
-        // Logs the user out
         Auth::logout();
 
-        // Invalidate the session and regenerate token
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // Redirect to login page or homepage
-        return redirect('/login');
+        return redirect()->route('auth.login');
     }
 
-    // Show the registration form
-    public function showsignupForm()
-    {
-        return view('auth.signup');
+    public function modify_info(Request $request)
+{
+    $user = Auth::user();
+
+    $request->validate([
+        'name'            => 'nullable|string|max:255',
+        'email'           => 'nullable|email|unique:users,email,' . $user->id,
+        'bio'             => 'nullable|string|max:1000',
+        'password'        => 'nullable|string|min:6|confirmed',
+        'profile_image'   => 'nullable|image|max:2048',
+        'facebook_link'   => 'nullable|url',
+        'instagram_link'  => 'nullable|url',
+        'twitter_link'    => 'nullable|url',
+        'youtube_link'    => 'nullable|url',
+        'tiktok_link'     => 'nullable|url',
+    ]);
+
+    if ($request->hasFile('profile_image')) {
+        $filename = time() . '_' . $request->file('profile_image')->getClientOriginalName();
+        $path = $request->file('profile_image')->storeAs('profile_images', $filename, 'public');
+        $user->profile_image = $path;
     }
 
-    // Show the login form
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
+    $user->name           = $request->name           ?? $user->name;
+    $user->email          = $request->email          ?? $user->email;
+    $user->bio            = $request->bio            ?? $user->bio;
+    $user->facebook_link  = $request->facebook_link  ?? $user->facebook_link;
+    $user->instagram_link = $request->instagram_link ?? $user->instagram_link;
+    $user->twitter_link   = $request->twitter_link   ?? $user->twitter_link;
+    $user->youtube_link   = $request->youtube_link   ?? $user->youtube_link;
+    $user->tiktok_link    = $request->tiktok_link    ?? $user->tiktok_link;
+
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+    }   
+
+    $user->save();
+
+    return redirect()->back()->with('success', 'Profile updated successfully.');
+}
 
 
 }

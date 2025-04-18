@@ -109,7 +109,7 @@
                     
                     <div>
                         <label for="confirm-password" class="block text-flavorshare-orange mb-2">confirm password</label>
-                        <input type="password" id="confirm-password" name="confirm-password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <input type="password" id="confirm-password" name="password_confirmation" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
                         <p id="confirm-password-error" class="text-red-500 text-sm mt-1 hidden"></p>
                     </div>
                     

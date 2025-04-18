@@ -19,9 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    
-Route::get('/signup', [AuthController::class, 'showsignupForm'])->name('signup');
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+
+
+
+Route::get('/signup',function(){
+    return view('auth.signup');
+})->name('signup_page');
+
+Route::get('/login',function(){
+    return view('auth.login');
+})->name('login_page');
+
 Route::post('/signup', [AuthController::class, 'signup']);
+
 Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::post('/login', [AuthController::class, 'login']);
