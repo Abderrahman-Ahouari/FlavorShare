@@ -88,10 +88,11 @@
             <div class="max-w-md mx-auto">
                 <h1 class="text-3xl font-bold mb-8 text-center md:text-left">Sign up</h1>
                 
-                <form id="signup-form" method="POST" class="space-y-6">
+                <form id="signup-form" method="POST" action="{{ route('signup') }}" class="space-y-6">
+                    @csrf
                     <div>
                         <label for="username" class="block text-flavorshare-orange mb-2">Username</label>
-                        <input type="text" id="username" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
+                        <input type="text" id="username" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>
                         <p id="username-error" class="text-red-500 text-sm mt-1 hidden"></p>
                     </div>
                     
@@ -115,7 +116,6 @@
                     
                     <button type="submit" class="w-full py-3 bg-flavorshare-orange text-white rounded-lg hover:bg-orange-500 transition-colors">sign up</button>
                     
-                    <p id="form-success" class="text-green-500 text-center hidden">Form submitted successfully!</p>
                 </form>
                 
                 <p class="mt-6 text-center">
@@ -207,93 +207,7 @@
             });
         }
         
-        // Form validation
-        const form = document.getElementById('signup-form');
-        const usernameInput = document.getElementById('username');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const confirmPasswordInput = document.getElementById('confirm-password');
-        
-        const usernameError = document.getElementById('username-error');
-        const emailError = document.getElementById('email-error');
-        const passwordError = document.getElementById('password-error');
-        const confirmPasswordError = document.getElementById('confirm-password-error');
-        const formSuccess = document.getElementById('form-success');
-        
-        function hideAllErrors() {
-            usernameError.classList.add('hidden');
-            emailError.classList.add('hidden');
-            passwordError.classList.add('hidden');
-            confirmPasswordError.classList.add('hidden');
-            formSuccess.classList.add('hidden');
-        }
-        
-        function showError(element, message) {
-            element.textContent = message;
-            element.classList.remove('hidden');
-        }
-        
-        function validateEmail(email) {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(String(email).toLowerCase());
-        }
-        
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                let isValid = true;
-                
-                hideAllErrors();
-                
-                // Validate username
-                if (usernameInput.value.trim() === '') {
-                    showError(usernameError, 'Username is required');
-                    isValid = false;
-                } else if (usernameInput.value.length < 3) {
-                    showError(usernameError, 'Username must be at least 3 characters');
-                    isValid = false;
-                }
-                
-                // Validate email
-                if (emailInput.value.trim() === '') {
-                    showError(emailError, 'Email is required');
-                    isValid = false;
-                } else if (!validateEmail(emailInput.value)) {
-                    showError(emailError, 'Please enter a valid email address');
-                    isValid = false;
-                }
-                
-                // Validate password
-                if (passwordInput.value === '') {
-                    showError(passwordError, 'Password is required');
-                    isValid = false;
-                } else if (passwordInput.value.length < 6) {
-                    showError(passwordError, 'Password must be at least 6 characters');
-                    isValid = false;
-                }
-                
-                // Validate confirm password
-                if (confirmPasswordInput.value === '') {
-                    showError(confirmPasswordError, 'Please confirm your password');
-                    isValid = false;
-                } else if (passwordInput.value !== confirmPasswordInput.value) {
-                    showError(confirmPasswordError, 'Passwords do not match');
-                    isValid = false;
-                }
-                
-                // Submit the form if valid
-                if (isValid) {
-                    // This would typically be an AJAX request to your server
-                    formSuccess.classList.remove('hidden');
-                    form.reset();
-                    
-                    // For demonstration purposes - in a real app you'd submit to a server
-                    setTimeout(() => {
-                        formSuccess.classList.add('hidden');
-                    }, 3000);
-                }
-            });
-        }
+
     </script>
 </body>
 </html>

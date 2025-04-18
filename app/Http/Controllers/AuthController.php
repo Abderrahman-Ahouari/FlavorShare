@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         Auth::login($user); 
 
-        return redirect()->route('dashboard'); 
+        // return redirect()->route('dashboard'); 
     }
 
     // Login
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {  
             $request->session()->regenerate(); 
-            return redirect()->route('dashboard');
+            // return redirect()->route('dashboard');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials.']);

@@ -22,16 +22,18 @@ Route::get('/', function () {
 
 
 
-Route::get('/signup',function(){
+Route::get('/signup_view',function(){
     return view('auth.signup');
 })->name('signup_page');
 
-Route::get('/login',function(){
+Route::get('/login_view',function(){
     return view('auth.login');
 })->name('login_page');
 
-Route::post('/signup', [AuthController::class, 'signup']);
 
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
