@@ -77,7 +77,8 @@
     </header>
 
     <!-- Main Content -->
-    <main class="w-full items-center flex flex-col md:flex-row">
+    <main class="w-full items-center
+     flex flex-col md:flex-row">
         <!-- Image Section (Hidden on Mobile) -->
         <div class="hidden md:block w-full md:w-1/2 p-6">
             <img src="https://samsungfood.com/wp-content/cache/thumb/77/aaa69d2d52e3377_717x650.webp" alt="Delicious pasta dish" class="w-full h-auto rounded-lg object-cover" />
