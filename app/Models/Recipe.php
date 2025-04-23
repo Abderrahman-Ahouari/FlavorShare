@@ -49,7 +49,10 @@ class Recipe extends Model
         return $this->hasMany(RecipeImage::class);
     }
 
-     
+    public function steps()
+    {
+        return $this->hasMany(recipe_steps::class);
+    }     
 
 
 }
