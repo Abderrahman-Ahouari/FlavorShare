@@ -10,7 +10,7 @@ use App\Models\category;
 
 class CategoryController extends Controller
 {
-    public function getall()
+    public function getall()       
     {
         return Category::all();
     }
