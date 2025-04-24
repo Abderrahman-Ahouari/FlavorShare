@@ -39,7 +39,7 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-    public function delete(Category $category)
+    public function delete(Category $category)       
     {
         $category->delete();
 
