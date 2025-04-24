@@ -19,9 +19,9 @@ return new class extends Migration
                 $table->integer('preparation_time'); 
                 $table->integer('servings');
                 $table->foreignId('user_id')->constrained();
-                $table->enum('status', ['banned', 'safe'])->default('safe');
+                $table->enum('status', ['banned', 'safe',])->default('safe');
                 $table->string('video')->nullable(); 
-                $table->enum('video_type', ['url', 'file'])->nullable();
+                $table->enum('video_type', ['url', 'file', 'null'])->default('null');
                 $table->timestamps();
             });
         }
