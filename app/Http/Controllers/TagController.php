@@ -50,4 +50,20 @@ class TagController extends Controller
 
         return response()->json(['message' => 'Tag deleted successfully']);
     }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $tags = Tag::where('name', 'like', '%' . $query . '%')
+            ->select('id', 'name')
+            ->limit(10)
+            ->get();
+    
+        return response()->json($tags);
+    }
+
+    
+    
 }

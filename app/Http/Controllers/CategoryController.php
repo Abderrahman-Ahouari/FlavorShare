@@ -45,4 +45,18 @@ class CategoryController extends Controller
 
         return response()->json(['message' => 'Category deleted successfully']);
     }
+
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $categories = category::where('name', 'like', '%' . $query . '%')
+            ->select('id', 'name')
+            ->limit(10)
+            ->get();
+    
+        return response()->json($categories);
+    }
 }

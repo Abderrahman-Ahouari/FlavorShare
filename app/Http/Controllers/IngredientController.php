@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\recipe;
 use Illuminate\Http\Request;
+use App\Models\ingredient;
+
 
 class IngredientController extends Controller
 {

@@ -81,3 +81,4 @@ Route::get('/category-recipes/category/{categoryId}', [CategoryRecipesController
 Route::post('/recipes', [RecipeController::class, 'create']);
 Route::put('/recipes/{recipe}', [RecipeController::class, 'update']);
 Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']); 
+Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']); 
