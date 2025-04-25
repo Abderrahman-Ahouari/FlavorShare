@@ -10,7 +10,7 @@ use App\Models\category;
 
 class CategoryController extends Controller
 {
-    public function getall()       
+    public function getall()
     {
         return Category::all();
     }
@@ -39,7 +39,7 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-    public function delete(Category $category)       
+    public function delete(Category $category)      
     {
         $category->delete();
 
