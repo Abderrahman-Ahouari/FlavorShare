@@ -35,6 +35,10 @@ Route::get('/login_view',function(){
     return view('auth.login');
 })->name('login_page');
 
+Route::get('/create_recipe',function(){
+    return view('user.create_recipe');
+})->name('create_recipe');
+
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
