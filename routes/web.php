@@ -81,7 +81,7 @@ Route::get('/category-recipes/category/{categoryId}', [CategoryRecipesController
 Route::post('/recipes', [RecipeController::class, 'create']);
 Route::put('/recipes/{recipe}', [RecipeController::class, 'update']);
 Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']);
-Route::get('/create_recipe', [RecipeController::class, 'create_recipe']);
+Route::get('/create_recipe_view', [RecipeController::class, 'create_recipe_view']);
 
 
 Route::get('/Ingredient_search', [IngredientController::class, 'search'])->name('Ingredient_search');

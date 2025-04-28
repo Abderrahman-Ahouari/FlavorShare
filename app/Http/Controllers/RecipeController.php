@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\recipe;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Ingredient;
 
 
 
@@ -127,7 +130,7 @@ class RecipeController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::select('id', 'name')->get();
-        $ingredients = Ingredient::select('id', 'name')->get(); // Optional preload
+        $ingredients = Ingredient::select('id', 'name')->get(); 
     
         return view('user.create_recipe', compact('categories', 'tags', 'ingredients'));
     }

@@ -62,7 +62,7 @@ class TagController extends Controller
             ->get();
     
         return response()->json($tags);
-    }
+    } 
 
     
     
