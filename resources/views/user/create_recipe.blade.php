@@ -6,7 +6,7 @@
     <title>Sign Up | FlavorShare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
+        tailwind.config = {                                                                 
             theme: {
                 extend: {
                     colors: {
