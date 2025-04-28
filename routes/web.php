@@ -7,6 +7,7 @@ use App\Http\Controllers\TagRecipeController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CategoryRecipesController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IngredientController;
 
 
 /*
@@ -46,6 +47,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // TagController routes
 Route::get('/tags', [TagController::class, 'getall'])->name('tags.getall');
+Route::get('/tags_search', [TagController::class, 'search'])->name('tags_search');
 Route::post('/tags', [TagController::class, 'create'])->name('tags.create');
 Route::put('/tags/{id}', [TagController::class, 'update'])->name('tags.update');
 Route::delete('/tags/{id}', [TagController::class, 'delete'])->name('tags.delete');
@@ -61,6 +63,7 @@ Route::put('/recipes/{recipeId}/tags', [TagRecipeController::class, 'syncTags'])
 
 // CategoryController routes
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories_search', [CategoryController::class, 'search']);
 Route::post('/categories', [CategoryController::class, 'store']);
 Route::put('/categories/{category}', [CategoryController::class, 'update']);
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
@@ -79,3 +82,6 @@ Route::post('/recipes', [RecipeController::class, 'create']);
 Route::put('/recipes/{recipe}', [RecipeController::class, 'update']);
 Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']);
 Route::get('/create_recipe', [RecipeController::class, 'create_recipe']);
+
+
+Route::get('/Ingredient_search', [IngredientController::class, 'search'])->name('Ingredient_search');
