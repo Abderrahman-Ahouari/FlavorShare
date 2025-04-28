@@ -35,9 +35,6 @@ Route::get('/login_view',function(){
     return view('auth.login');
 })->name('login_page');
 
-Route::get('/create_recipe',function(){
-    return view('user.create_recipe');
-})->name('create_recipe');
 
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
@@ -80,5 +77,5 @@ Route::get('/category-recipes/category/{categoryId}', [CategoryRecipesController
 // RecipeController routes
 Route::post('/recipes', [RecipeController::class, 'create']);
 Route::put('/recipes/{recipe}', [RecipeController::class, 'update']);
-Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']); 
-Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']); 
+Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']);
+Route::get('/create_recipe', [RecipeController::class, 'create_recipe']);
