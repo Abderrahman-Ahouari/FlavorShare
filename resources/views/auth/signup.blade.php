@@ -43,7 +43,7 @@
         }
     </style>
 </head>
-<body class="bg-white min-h-screen">
+<body class="bg-white min-h-screen"> 
     <!-- Header -->
     <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center relative">
         <a href="#" class="flex items-center z-10">
@@ -204,7 +204,7 @@
                 } else {
                     document.body.style.overflow = ''; // Re-enable scrolling when menu is closed
                 }
-            });
+            }); 
         }
         
 
