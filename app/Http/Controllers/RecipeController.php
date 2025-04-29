@@ -83,7 +83,7 @@ class RecipeController extends Controller
         // ✅ Store recipe images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $path = $image->store('recipe_images', 'public');
+                $path = $image->store('recipe_images', 'public');                        
                 $recipe->images()->create(['image_path' => $path]);
             }
         }
