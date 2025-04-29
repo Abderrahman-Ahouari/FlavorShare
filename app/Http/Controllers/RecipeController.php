@@ -92,11 +92,6 @@ class RecipeController extends Controller
         foreach ($validated['steps'] as $step) {
             $recipe->steps()->create(['description' => $step['description']]);
         }
-    
-        return response()->json([
-            'message' => 'Recipe created successfully!',
-            'recipe' => $recipe->load(['categories', 'tags', 'ingredients', 'images', 'steps']),
-        ], 201);
     }
     
 
