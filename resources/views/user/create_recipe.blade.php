@@ -516,7 +516,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    const ingredientSearch = document.querySelector('.ingredient-search');
+ const ingredientSearch = document.querySelector('.ingredient-search');
     const ingredientSearchResults = document.querySelector('.ingredient-search-results');
     const ingredientsList = document.getElementById('ingredients-list');
     let ingredientCount = 0;
@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ingredientSearchResults.innerHTML = '<div class="p-3 text-gray-500">Searching...</div>';
         ingredientSearchResults.classList.remove('hidden');
         
-        fetch(`{{ route('Ingredient_search') }}?query=${encodeURIComponent(query)}`)
+        fetch(`/api/ingredients/search?query=${encodeURIComponent(query)}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -640,11 +640,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-ingredient-btn').addEventListener('click', function() {
         ingredientSearch.focus();
     });
-
-
-
-
-    
     
     // Utility function for debouncing
     function debounce(func, wait) {
