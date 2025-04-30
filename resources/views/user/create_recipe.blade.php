@@ -109,31 +109,32 @@
 
 
 
-        <!-- Instructions -->
-        <div>
-            <label class="block text-gray-700 font-medium mb-2">Instructions</label>
-            <div id="instructions-container" class="space-y-3">
-                <div class="instruction-item flex items-start">
-                    <span class="inline-flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-500 font-medium text-sm mr-3 mt-3">1</span>
-                    <textarea name="steps[0][description]" rows="2" required
-                              class="flex-1 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                              placeholder="Describe step by step the recipe"></textarea>
-                    <button type="button" class="delete-instruction ml-2 mt-3 text-gray-400 hover:text-gray-600" style="display: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Add instruction button -->
-            <button type="button" id="add-instruction-btn" class="mt-2 text-sm text-orange-500 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+<!-- Instructions Section -->
+<div>
+    <label class="block text-gray-700 font-medium mb-2">Instructions</label>
+    <div id="instructions-container" class="space-y-3">
+        <div class="instruction-item flex items-start">
+            <span class="inline-flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-500 font-medium text-sm mr-3 mt-3">1</span>
+            <textarea name="steps[0][description]" rows="2" required
+                      class="flex-1 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      placeholder="Describe step by step the recipe"></textarea>
+            <button type="button" class="delete-instruction ml-2 mt-3 text-gray-400 hover:text-gray-600" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
-                Add another step
             </button>
         </div>
+    </div>
+    
+    <!-- Add instruction button -->
+    <button type="button" id="add-instruction-btn" class="mt-2 text-sm text-orange-500 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        Add another step
+    </button>
+</div>
+
 
         <!-- Preparation Time and Servings -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -220,42 +221,75 @@
             </div>
         </div>
 
-        <!-- Images -->
-        <div>
-            <label class="block text-gray-700 font-medium mb-2">Cover Image</label>
-            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <input type="file" name="cover_image" id="cover-image" class="hidden" accept="image/*">
-                <label for="cover-image" class="cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                    </svg>
-                    <span class="mt-2 block text-sm font-medium text-gray-700">
-                        Click to upload cover image
-                    </span>
-                </label>
-                <div id="cover-image-preview" class="mt-4 hidden">
-                    <img src="#" alt="Cover preview" class="max-h-40 mx-auto">
-                    <button type="button" id="remove-cover-image" class="mt-2 text-sm text-red-500">Remove</button>
-                </div>
-            </div>
-            
-            <div class="mt-4">
-                <label class="block text-gray-700 font-medium mb-2">Additional Images</label>
-                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <input type="file" name="images[]" id="additional-images" class="hidden" accept="image/*" multiple>
-                    <label for="additional-images" class="cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                        </svg>
-                        <span class="mt-2 block text-sm font-medium text-gray-700">
-                            Click to upload additional images
-                        </span>
-                    </label>
-                    <div id="additional-images-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2 hidden"></div>
-                </div>
+<!-- Images Section -->
+<div>
+    <!-- Cover Image -->
+    <div class="mb-6">
+        <label class="block text-gray-700 font-medium mb-2">Cover Image</label>
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+            <input type="file" name="cover_image" id="cover-image" class="hidden" accept="image/*">
+            <label for="cover-image" class="cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <span class="mt-2 block text-sm font-medium text-gray-700">
+                    Click to upload cover image
+                </span>
+            </label>
+            <div id="cover-image-preview" class="mt-4 hidden">
+                <img src="#" alt="Cover preview" class="max-h-40 mx-auto">
+                <button type="button" id="remove-cover-image" class="mt-2 text-sm text-red-500">Remove</button>
             </div>
         </div>
+    </div>
+    
+    <!-- Additional Images -->
+    <div class="mt-4">
+        <div class="flex justify-between items-center mb-2">
+            <label class="block text-gray-700 font-medium">Additional Images</label>
+            <button type="button" id="add-image-btn" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
         
+        <div id="additional-images-container">
+            <!-- Image upload items will be added here dynamically -->
+        </div>
+        
+        <!-- Template for image upload item (hidden) -->
+        <template id="image-upload-template">
+            <div class="image-upload-item mb-3 border-2 border-dashed border-gray-300 rounded-lg p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-sm font-medium text-gray-700">Image</span>
+                    <button type="button" class="remove-image bg-white rounded-full p-1 shadow-md text-gray-500 hover:text-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="file-upload-container">
+                    <input type="file" name="images[]" class="image-file-input hidden" accept="image/*">
+                    <label class="file-upload-label cursor-pointer block text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <span class="mt-1 block text-sm font-medium text-gray-700">
+                            Click to upload image
+                        </span>
+                    </label>
+                    <div class="image-preview mt-2 hidden">
+                        <img src="#" alt="Image preview" class="max-h-32 mx-auto rounded-md">
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</div>
+
+
         <!-- Submit Button (Mobile) -->
         <div class="md:hidden">
             <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-lg">
@@ -338,79 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ============= Cover Image Preview =============
-    const coverImageInput = document.getElementById('cover-image');
-    const coverImagePreview = document.getElementById('cover-image-preview');
-    const coverImagePreviewImg = coverImagePreview.querySelector('img');
-    const removeCoverImageBtn = document.getElementById('remove-cover-image');
-    
-    coverImageInput.addEventListener('change', function() {
-        if (this.files && this.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                coverImagePreviewImg.src = e.target.result;
-                coverImagePreview.classList.remove('hidden');
-            };
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-    
-    removeCoverImageBtn.addEventListener('click', function() {
-        coverImageInput.value = '';
-        coverImagePreview.classList.add('hidden');
-    });
-    
-    // ============= Additional Images Preview =============
-    const additionalImagesInput = document.getElementById('additional-images');
-    const additionalImagesPreview = document.getElementById('additional-images-preview');
-    
-    additionalImagesInput.addEventListener('change', function() {
-        if (this.files && this.files.length > 0) {
-            additionalImagesPreview.innerHTML = '';
-            additionalImagesPreview.classList.remove('hidden');
-            
-            Array.from(this.files).forEach((file, index) => {
-                const reader = new FileReader();
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'relative';
-                
-                const img = document.createElement('img');
-                img.className = 'w-full h-24 object-cover rounded';
-                
-                const removeBtn = document.createElement('button');
-                removeBtn.type = 'button';
-                removeBtn.className = 'absolute top-1 right-1 bg-white rounded-full p-1 shadow-md text-gray-500 hover:text-red-500';
-                removeBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                `;
-                
-                reader.onload = function(e) {
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-                
-                removeBtn.addEventListener('click', function() {
-                    // Remove this image from the preview
-                    imgContainer.remove();
-                    
-                    // If no more images, hide the preview container
-                    if (additionalImagesPreview.children.length === 0) {
-                        additionalImagesPreview.classList.add('hidden');
-                    }
-                    
-                    // Note: Since we can't directly modify the FileList object,
-                    // we'll handle the actual removal during form submission
-                });
-                
-                imgContainer.appendChild(img);
-                imgContainer.appendChild(removeBtn);
-                additionalImagesPreview.appendChild(imgContainer);
-            });
-        }
-    });
-    
+     
     // ============= Tags Input =============
     const tagsInput = document.getElementById('tags-input');
     const tagsContainer = document.getElementById('tags-container');
@@ -463,60 +425,189 @@ document.addEventListener('DOMContentLoaded', function() {
         tagsContainer.appendChild(tagEl);
     }
     
-    // ============= Instructions Management =============
-    const instructionsContainer = document.getElementById('instructions-container');
-    const addInstructionBtn = document.getElementById('add-instruction-btn');
-    let instructionCount = 1;
-    
-    addInstructionBtn.addEventListener('click', function() {
-        instructionCount++;
+    // Cover Image Preview
+    const coverImageInput = document.getElementById('cover-image');
+        const coverImagePreview = document.getElementById('cover-image-preview');
+        const coverPreviewImg = coverImagePreview.querySelector('img');
+        const removeCoverBtn = document.getElementById('remove-cover-image');
         
+        coverImageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    coverPreviewImg.src = e.target.result;
+                    coverImagePreview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        removeCoverBtn.addEventListener('click', function() {
+            coverImageInput.value = '';
+            coverPreviewImg.src = '#';
+            coverImagePreview.classList.add('hidden');
+        });
+        
+        // Additional Images Functionality
+        const addImageBtn = document.getElementById('add-image-btn');
+        const imagesContainer = document.getElementById('additional-images-container');
+        const imageTemplate = document.getElementById('image-upload-template');
+        
+        // Add new image upload item
+        addImageBtn.addEventListener('click', function() {
+            addImageUploadItem();
+        });
+        
+        function addImageUploadItem() {
+            // Clone the template
+            const clone = document.importNode(imageTemplate.content, true);
+            const imageItem = clone.querySelector('.image-upload-item');
+            const fileInput = clone.querySelector('.image-file-input');
+            const fileLabel = clone.querySelector('.file-upload-label');
+            const imagePreview = clone.querySelector('.image-preview');
+            const previewImg = imagePreview.querySelector('img');
+            const removeBtn = clone.querySelector('.remove-image');
+            
+            // Generate unique id for this input
+            const uniqueId = 'image-' + Date.now();
+            fileInput.id = uniqueId;
+            fileLabel.setAttribute('for', uniqueId);
+            
+            // File input change event
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        imagePreview.classList.remove('hidden');
+                        fileLabel.classList.add('hidden');
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+            
+            // Remove button click event
+            removeBtn.addEventListener('click', function() {
+                imageItem.remove();
+            });
+            
+            // Add the new item to the container
+            imagesContainer.appendChild(clone);
+        }
+        
+        // Add first image upload item by default
+        addImageUploadItem();
+
+    
+ // ============= Instructions Management =============
+ const instructionsContainer = document.getElementById('instructions-container');
+    const addInstructionBtn = document.getElementById('add-instruction-btn');
+    let instructionCount = 1; // Start with 1 as we already have one step by default
+    
+    // Add event listener to the "Add another step" button
+    addInstructionBtn.addEventListener('click', function() {
+        addNewInstruction();
+    });
+    
+    // Add event listener to the first delete button (which is initially hidden)
+    const firstDeleteBtn = document.querySelector('.delete-instruction');
+    if (firstDeleteBtn) {
+        firstDeleteBtn.addEventListener('click', function() {
+            const firstInstruction = this.closest('.instruction-item');
+            if (instructionsContainer.querySelectorAll('.instruction-item').length > 1) {
+                instructionsContainer.removeChild(firstInstruction);
+                updateInstructionNumbers();
+            }
+        });
+    }
+    
+    // Function to add a new instruction
+    function addNewInstruction() {
         const newInstruction = document.createElement('div');
         newInstruction.className = 'instruction-item flex items-start';
-        newInstruction.innerHTML = `
-            <span class="inline-flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-500 font-medium text-sm mr-3 mt-3">${instructionCount}</span>
-            <textarea name="steps[${instructionCount-1}][description]" rows="2" required
-                      class="flex-1 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                      placeholder="Describe step by step the recipe"></textarea>
-            <button type="button" class="delete-instruction ml-2 mt-3 text-gray-400 hover:text-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </button>
+        
+        // Create the step number indicator
+        const stepNumber = document.createElement('span');
+        stepNumber.className = 'inline-flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-500 font-medium text-sm mr-3 mt-3';
+        stepNumber.textContent = instructionCount + 1;
+        newInstruction.appendChild(stepNumber);
+        
+        // Create the textarea
+        const textarea = document.createElement('textarea');
+        textarea.name = `steps[${instructionCount}][description]`;
+        textarea.rows = 2;
+        textarea.required = true;
+        textarea.className = 'flex-1 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500';
+        textarea.placeholder = 'Describe step by step the recipe';
+        newInstruction.appendChild(textarea);
+        
+        // Create the delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.className = 'delete-instruction ml-2 mt-3 text-gray-400 hover:text-red-500';
+        deleteButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
         `;
         
-        instructionsContainer.appendChild(newInstruction);
-        
         // Add delete functionality
-        newInstruction.querySelector('.delete-instruction').addEventListener('click', function() {
+        deleteButton.addEventListener('click', function() {
             instructionsContainer.removeChild(newInstruction);
-            // Renumber the steps
             updateInstructionNumbers();
         });
         
-        // Show delete button for first instruction if we now have multiple
+        newInstruction.appendChild(deleteButton);
+        
+        // Add the new instruction to the container
+        instructionsContainer.appendChild(newInstruction);
+        
+        // Increment the counter
+        instructionCount++;
+        
+        // Show delete button for the first instruction if we now have multiple
         if (instructionCount === 2) {
-            document.querySelector('.delete-instruction').style.display = 'block';
+            const firstDeleteBtn = instructionsContainer.querySelector('.instruction-item:first-child .delete-instruction');
+            if (firstDeleteBtn) {
+                firstDeleteBtn.style.display = 'block';
+            }
         }
-    });
+    }
     
+    // Function to update instruction numbers and names after deletion
     function updateInstructionNumbers() {
         const instructions = instructionsContainer.querySelectorAll('.instruction-item');
+        
         instructions.forEach((item, index) => {
-            item.querySelector('span').textContent = index + 1;
-            // Update name attribute to maintain sequence
-            item.querySelector('textarea').name = `steps[${index}][description]`;
+            // Update the step number
+            const stepNumber = item.querySelector('span');
+            if (stepNumber) {
+                stepNumber.textContent = index + 1;
+            }
+            
+            // Update textarea name to maintain sequence
+            const textarea = item.querySelector('textarea');
+            if (textarea) {
+                textarea.name = `steps[${index}][description]`;
+            }
         });
         
+        // Update instructionCount
         instructionCount = instructions.length;
         
         // Hide delete button if only one instruction left
         if (instructionCount === 1) {
-            document.querySelector('.delete-instruction').style.display = 'none';
+            const deleteBtn = instructionsContainer.querySelector('.delete-instruction');
+            if (deleteBtn) {
+                deleteBtn.style.display = 'none';
+            }
         }
     }
     
- const ingredientSearch = document.querySelector('.ingredient-search');
+    
+    // ============= Ingredient Search and Add =============
+
+    const ingredientSearch = document.querySelector('.ingredient-search');
     const ingredientSearchResults = document.querySelector('.ingredient-search-results');
     const ingredientsList = document.getElementById('ingredients-list');
     let ingredientCount = 0;
@@ -543,7 +634,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ingredientSearchResults.innerHTML = '<div class="p-3 text-gray-500">Searching...</div>';
         ingredientSearchResults.classList.remove('hidden');
         
-        fetch(`/api/ingredients/search?query=${encodeURIComponent(query)}`)
+        fetch(`{{ route('Ingredient_search') }}?query=${encodeURIComponent(query)}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -640,7 +731,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-ingredient-btn').addEventListener('click', function() {
         ingredientSearch.focus();
     });
-    
+
+
+
     // Utility function for debouncing
     function debounce(func, wait) {
         let timeout;
