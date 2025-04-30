@@ -33,7 +33,7 @@ class RecipeController extends Controller
             'categories' => 'nullable|array',
             'categories.*' => 'integer|exists:categories,id',
     
-            'tags' => 'nullable|array',
+            'tags' => 'nullable|array',                                                   
             'tags.*' => 'string|max:100', 
     
             'ingredients' => 'required|array|min:1',
