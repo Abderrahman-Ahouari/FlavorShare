@@ -15,7 +15,6 @@ class Recipe extends Model
         'cover_image',
         'preparation_time',
         'servings',
-        'steps',
         'user_id',
         'status',
         'video',

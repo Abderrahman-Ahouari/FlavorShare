@@ -7,6 +7,10 @@ use App\Models\recipe;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Ingredient;
+use App\Models\recipe_steps;
+use App\Models\recipe_image;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -92,6 +96,9 @@ class RecipeController extends Controller
         foreach ($validated['steps'] as $step) {
             $recipe->steps()->create(['description' => $step['description']]);
         }
+
+        return redirect()->route('recipes.index')->with('success', 'Recipe created!');
+
     }
     
 

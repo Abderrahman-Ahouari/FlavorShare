@@ -813,18 +813,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-ingredient-btn').addEventListener('click', function() {
         ingredientSearch.focus();
     });
-
-
-
-    // Utility function for debouncing
-    function debounce(func, wait) {
-        let timeout;
-        return function(...args) {
-            const context = this;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), wait);
-        };
-    }
     
     // Form submission validation
     document.getElementById('recipe-form').addEventListener('submit', function(e) {

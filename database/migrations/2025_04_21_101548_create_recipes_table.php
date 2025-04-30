@@ -13,7 +13,7 @@ return new class extends Migration
         {
             Schema::create('recipes', function (Blueprint $table) {
                 $table->id();
-                $table->string('title');
+                $table->string('title'); 
                 $table->text('description');
                 $table->string('cover_image')->nullable(); 
                 $table->integer('preparation_time'); 
