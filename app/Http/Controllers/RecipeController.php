@@ -30,7 +30,7 @@ class RecipeController extends Controller
             'categories.*' => 'integer|exists:categories,id',
     
             'tags' => 'nullable|array',
-            'tags.*' => 'string|max:100', // Now accepting tag names
+            'tags.*' => 'string|max:100', 
     
             'ingredients' => 'required|array|min:1',
             'ingredients.*.ingredient_id' => 'required|integer|exists:ingredients,id',
@@ -64,7 +64,7 @@ class RecipeController extends Controller
     
         // ✅ Handle tags: create if not exists
         $tagIds = [];
-        if (!empty($validated['tags'])) {
+        if (!empty($validated['tags'])) {       
             foreach ($validated['tags'] as $tagName) {
                 $tag = \App\Models\Tag::firstOrCreate(['name' => $tagName]);
                 $tagIds[] = $tag->id;
@@ -136,11 +136,8 @@ class RecipeController extends Controller
 
     public function create_recipe_view()
     {
-        $categories = Category::all();
-        $tags = Tag::select('id', 'name')->get();
-        $ingredients = Ingredient::select('id', 'name')->get(); 
-    
-        return view('user.create_recipe', compact('categories', 'tags', 'ingredients'));
+        $categories = Category::all();    
+        return view('user.create_recipe', compact('categories',));
     }
     
     
