@@ -36,6 +36,9 @@ Route::get('/login_view',function(){
     return view('auth.login');
 })->name('login_page');
 
+Route::get('/user_account_view',function(){
+    return view('user.account');
+})->name('user_account');
 
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');

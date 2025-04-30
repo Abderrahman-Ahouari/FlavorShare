@@ -45,13 +45,20 @@ class Recipe extends Model
 
     public function images()
     {
-        return $this->hasMany(RecipeImage::class);
+        return $this->hasMany(recipe_image::class);
     }
 
     public function steps()
     {
         return $this->hasMany(recipe_steps::class);
-    }     
+    }
+
+    public function ingredients()
+    {
+        return $this->belongsToMany(ingredient::class, 'ingredient_recipes')
+                    ->withPivot('quantity', 'unit')
+                    ->withTimestamps();
+    }
 
 
 }

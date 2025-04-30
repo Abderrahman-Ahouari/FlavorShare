@@ -88,7 +88,7 @@ class RecipeController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('recipe_images', 'public');                        
-                $recipe->images()->create(['image_path' => $path]);
+                $recipe->images()->create(['image' => $path]);
             }
         }
     
@@ -97,10 +97,10 @@ class RecipeController extends Controller
             $recipe->steps()->create(['description' => $step['description']]);
         }
 
-        return redirect()->route('recipes.index')->with('success', 'Recipe created!');
+        return redirect()->route('user_account')->with('success', 'Recipe created!');
 
     }
-    
+
 
     
     public function update(Request $request, Recipe $recipe)
