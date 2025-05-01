@@ -54,7 +54,7 @@ class RecipeController extends Controller
             $validated['video'] = $request->input('video');
         }
     
-        if ($request->hasFile('cover_image')) {
+        if ($request->hasFile('cover_image')) { 
             $validated['cover_image'] = $request->file('cover_image')->store('recipe_covers', 'public');
         }
     

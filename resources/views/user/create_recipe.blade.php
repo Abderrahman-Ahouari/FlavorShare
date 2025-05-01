@@ -411,31 +411,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Video File Upload Preview
-        const videoFilePreview = document.getElementById('video-file-preview');
-        const videoPreviewSource = videoFilePreview.querySelector('video source');
-        const videoPlayer = videoFilePreview.querySelector('video');
-        const videoFileName = document.getElementById('video-file-name');
-        const removeVideoFile = document.getElementById('remove-video-file');
-        
-        videoFileInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const file = this.files[0];
-                const fileURL = URL.createObjectURL(file);
-                
-                // Update video preview
-                videoPreviewSource.src = fileURL;
-                videoPreviewSource.type = file.type;
-                videoPlayer.load();
-                
-                // Update file name display
-                const fileSize = (file.size / (1024 * 1024)).toFixed(2); // Convert to MB
-                videoFileName.textContent = `${file.name} (${fileSize} MB)`;
-                
-                // Show preview
-                videoFilePreview.classList.remove('hidden');
-            }
-        });
         
         // Remove video file
         removeVideoFile.addEventListener('click', function() {
