@@ -17,6 +17,42 @@ use Illuminate\Support\Facades\Storage;
 class RecipeController extends Controller
 {
 
+    public function index(Request $request) {
+        $recipes = Recipe::query();
+    
+        if ($request->filled('categories')) {
+            $recipes->whereHas('categories', function ($query) use ($request) {
+                $query->whereIn('categories.id', $request->categories);
+            });
+        }
+    
+        if ($request->filled('ingredients')) {
+            $recipes->whereHas('ingredients', function ($query) use ($request) {
+                $query->whereIn('ingredients.id', $request->ingredients);
+            });
+        }
+    
+        // Sorting
+        if ($request->filled('sort')) {
+            switch ($request->sort) {
+                case 'oldest':
+                    $recipes->orderBy('created_at', 'asc');
+                    break;
+                case 'top-rated':
+                    $recipes->orderBy('rating', 'desc');
+                    break;
+                default:
+                    $recipes->orderBy('created_at', 'desc');
+            }
+        } else {
+            $recipes->orderBy('created_at', 'desc');
+        }
+    
+        $recipes = $recipes->paginate(10);
+    
+        return view('user.recipes', compact('recipes'));
+    }
+
 
     public function create(Request $request)
     {
@@ -28,6 +64,7 @@ class RecipeController extends Controller
             'status' => 'nullable|in:safe,banned',
             'video_type' => 'nullable|in:url,file',
             'video' => 'nullable',
+            'video_file' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:102400',
             'cover_image' => 'nullable|image|max:2048',
     
             'categories' => 'nullable|array',
@@ -48,8 +85,8 @@ class RecipeController extends Controller
             'steps.*.description' => 'required|string',
         ]);
     
-        if ($request->video_type === 'file' && $request->hasFile('video')) {
-            $validated['video'] = $request->file('video')->store('recipe_videos', 'public');
+        if ($request->video_type === 'file' && $request->hasFile('video_file')) {
+            $validated['video'] = $request->file('video_file')->store('recipe_videos', 'public');
         } elseif ($request->video_type === 'url') {
             $validated['video'] = $request->input('video');
         }
@@ -100,7 +137,6 @@ class RecipeController extends Controller
         return redirect()->route('user_account')->with('success', 'Recipe created!');
 
     }
-
 
     
     public function update(Request $request, Recipe $recipe)

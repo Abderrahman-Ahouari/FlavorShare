@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('profile_image')->nullable();
             $table->text('bio')->nullable();
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->enum('status', ['banned', 'safe',])->default('safe');
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();
             $table->string('twitter_link')->nullable();

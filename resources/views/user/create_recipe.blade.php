@@ -253,62 +253,13 @@
 <div class="mb-6">
     <label class="block text-gray-700 font-medium mb-2">Recipe Video</label>
     
-    <!-- Video Type Selection -->
-    <div class="mb-4">
-        <div class="flex items-center space-x-4">
-            <div class="flex items-center">
-                <input type="radio" id="video-type-url" name="video_type" value="url" 
-                       class="h-4 w-4 text-blue-600" checked>
-                <label for="video-type-url" class="ml-2 text-sm text-gray-700">
-                    Video URL
-                </label>
-            </div>
-            <div class="flex items-center">
-                <input type="radio" id="video-type-file" name="video_type" value="file" 
-                       class="h-4 w-4 text-blue-600">
-                <label for="video-type-file" class="ml-2 text-sm text-gray-700">
-                    Upload Video File
-                </label>
-            </div>
-        </div>
-    </div>
-    
     <!-- Video URL Input -->
     <div id="video-url-container" class="mb-4">
         <input type="text" id="video-url" name="video" 
                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-               placeholder="Enter YouTube URL or direct video link">
-    </div>
-    
-    <!-- Video File Upload -->
-    <div id="video-file-container" class="mb-4 hidden">
-        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-            <input type="file" name="video_file" id="video-file-input" class="hidden" accept="video/*">
-            <label for="video-file-input" class="cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                <span class="mt-2 block text-sm font-medium text-gray-700">
-                    Click to upload video file
-                </span>
-                <span class="mt-1 block text-xs text-gray-500">
-                    MP4, WebM, or Ogg formats (Max 100MB)
-                </span>
-            </label>
-            <div id="video-file-preview" class="mt-4 hidden">
-                <video controls class="max-h-60 mx-auto">
-                    <source src="" type="">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="mt-2 flex items-center justify-center">
-                    <span id="video-file-name" class="text-sm text-gray-600 mr-2"></span>
-                    <button type="button" id="remove-video-file" class="text-sm text-red-500">Remove</button>
-                </div>
-            </div>
-        </div>
+               placeholder="Enter YouTube URL">
     </div>
 </div>
-
 
         <!-- Submit Button (Mobile) -->
         <div class="md:hidden">
@@ -385,36 +336,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-     // Video Type Toggle
-        const videoTypeUrl = document.getElementById('video-type-url');
-        const videoTypeFile = document.getElementById('video-type-file');
-        const videoUrlContainer = document.getElementById('video-url-container');
-        const videoFileContainer = document.getElementById('video-file-container');
-        const videoUrlInput = document.getElementById('video-url');
-        const videoFileInput = document.getElementById('video-file-input');
-        
-        // Toggle between URL and File upload
-        videoTypeUrl.addEventListener('change', function() {
-            if (this.checked) {
-                videoUrlContainer.classList.remove('hidden');
-                videoFileContainer.classList.add('hidden');
-                videoFileInput.value = ''; // Clear file input
-                document.getElementById('video-file-preview').classList.add('hidden');
-            }
-        });
-        
-        videoTypeFile.addEventListener('change', function() {
-            if (this.checked) {
-                videoUrlContainer.classList.add('hidden');
-                videoFileContainer.classList.remove('hidden');
-                videoUrlInput.value = ''; // Clear URL input
-            }
-        });
-        
-        
 
-    
-     
     // ============= Tags Input =============
     const tagsInput = document.getElementById('tags-input');
     const tagsContainer = document.getElementById('tags-container');
