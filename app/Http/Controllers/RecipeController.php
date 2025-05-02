@@ -17,41 +17,45 @@ use Illuminate\Support\Facades\Storage;
 class RecipeController extends Controller
 {
 
-    public function index(Request $request) {
-        $recipes = Recipe::query();
+    public function index(Request $request)
+    {
+        $query = Recipe::query()
+            ->with(['creator', 'likes', 'ingredients', 'categories'])
+            ->where('status', '!=', 'banned')
+            ->whereHas('creator', function ($q) {
+                $q->where('status', '!=', 'banned');
+            });
     
-        if ($request->filled('categories')) {
-            $recipes->whereHas('categories', function ($query) use ($request) {
-                $query->whereIn('categories.id', $request->categories);
+        // ✅ Filter by categories
+        if ($request->has('category_ids') && is_array($request->category_ids)) {
+            $query->whereHas('categories', function ($q) use ($request) {
+                $q->whereIn('categories.id', $request->category_ids);
             });
         }
     
-        if ($request->filled('ingredients')) {
-            $recipes->whereHas('ingredients', function ($query) use ($request) {
-                $query->whereIn('ingredients.id', $request->ingredients);
+        // ✅ Filter by ingredients
+        if ($request->has('ingredient_ids') && is_array($request->ingredient_ids)) {
+            $query->whereHas('ingredients', function ($q) use ($request) {
+                $q->whereIn('ingredients.id', $request->ingredient_ids);
             });
         }
     
-        // Sorting
-        if ($request->filled('sort')) {
-            switch ($request->sort) {
-                case 'oldest':
-                    $recipes->orderBy('created_at', 'asc');
-                    break;
-                case 'top-rated':
-                    $recipes->orderBy('rating', 'desc');
-                    break;
-                default:
-                    $recipes->orderBy('created_at', 'desc');
-            }
-        } else {
-            $recipes->orderBy('created_at', 'desc');
+        // ✅ Sorting
+        $sort = $request->get('sort', 'newest');
+        if ($sort === 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($sort === 'top-rated') {
+            $query->withCount('likes')->orderBy('likes_count', 'desc');
+        } else { // newest or default
+            $query->orderBy('created_at', 'desc');
         }
     
-        $recipes = $recipes->paginate(10);
+        // ✅ Paginate
+        $recipes = $query->paginate(16);
     
         return view('user.recipes', compact('recipes'));
     }
+    
 
 
     public function create(Request $request)
