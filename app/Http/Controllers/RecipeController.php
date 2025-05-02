@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\Ingredient;
 use App\Models\recipe_steps;
 use App\Models\recipe_image;
+use App\Models\recipe_likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,9 +21,9 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
         $query = Recipe::query()
-            ->with(['creator', 'likes', 'ingredients', 'categories'])
+            ->with(['user', 'likes', 'ingredients', 'categories'])
             ->where('status', '!=', 'banned')
-            ->whereHas('creator', function ($q) {
+            ->whereHas('user', function ($q) {
                 $q->where('status', '!=', 'banned');
             });
     

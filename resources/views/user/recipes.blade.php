@@ -65,7 +65,7 @@
                     <h1 class="text-3xl font-bold text-gray-800">Recipes</h1>
                     <div class="flex items-center">
                         <span class="mr-2 text-gray-600">Sort by:</span>
-                        <form id="sortForm" method="GET" action="{{ route('recipes.index') }}">
+                        <form id="sortForm" method="GET" action="{{ route('recipes') }}">
                             <!-- Hidden inputs for currently selected filters -->
                             @if(request()->has('categories'))
                                 @foreach(request()->categories as $category)
@@ -90,18 +90,18 @@
                 <!-- Recipe Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @forelse($recipes as $recipe)
-                    <a href="{{ route('recipes.show', $recipe->id) }}" class="recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+                    <a href="" class="recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
                         <div class="relative">
-                            <img src="{{ asset($recipe->cover_image) }}" alt="{{ $recipe->title }}" class="w-full h-48 object-cover">
+                            <img src="http://127.0.0.1:8000/storage{{ asset($recipe->cover_image) }}" alt="{{ $recipe->title }}" class="w-full h-48 object-cover">
                             <div class="absolute top-2 left-2 bg-black bg-opacity-60 text-white rounded-full px-2 py-1 text-sm flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
-                                {{ $recipe->likes_count }}%
+                                {{ $recipe->likes_count }}
                             </div>
                             <div class="absolute bottom-2 left-2 flex items-center">
-                                <img src="{{ asset($recipe->creator->profile_image) }}" alt="{{ $recipe->creator->name }}" class="w-8 h-8 rounded-full border-2 border-white">
-                                <span class="ml-2 text-white text-sm bg-black bg-opacity-60 px-2 py-1 rounded-lg">{{ $recipe->creator->name }}</span>
+                                <img src="http://127.0.0.1:8000/storage{{ asset($recipe->user->profile_image) }}" alt="" class="w-8 h-8 rounded-full border-2 border-white">
+                                <span class="ml-2 text-white text-sm bg-black bg-opacity-60 px-2 py-1 rounded-lg">{{ $recipe->user->name }}</span>
                             </div>
                         </div>
                         <div class="p-4">
@@ -115,7 +115,7 @@
                     @empty
                     <div class="col-span-full text-center py-8">
                         <p class="text-gray-500 text-lg">No recipes found matching your criteria.</p>
-                        <a href="{{ route('recipes.index') }}" class="mt-4 inline-block px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">View all recipes</a>
+                        <a href="{{ route('recipes') }}" class="mt-4 inline-block px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">View all recipes</a>
                     </div>
                     @endforelse
                 </div>
@@ -130,7 +130,7 @@
             <div class="w-full md:w-1/4">
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-semibold mb-6">Filter</h2>
-                    <form action="{{ route('recipes.index') }}" method="GET">
+                    <form action="{{ route('recipes') }}" method="GET">
                         <!-- Keep the sort parameter if set -->
                         @if(request()->has('sort'))
                             <input type="hidden" name="sort" value="{{ request()->sort }}">

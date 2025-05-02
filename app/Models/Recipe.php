@@ -43,7 +43,7 @@ class Recipe extends Model
         return $this->belongsToMany(Category::class, 'category_recipes');
     }
 
-    public function recipe_likes()
+    public function likes()
     {
         return $this->hasMany(recipe_likes::class);
     }
