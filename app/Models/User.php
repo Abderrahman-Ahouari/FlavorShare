@@ -48,4 +48,10 @@ class User extends Authenticatable
     protected $casts = [
 
     ];
+
+    public function recipe_likes()
+    {
+        return $this->hasMany(recipe_likes::class);
+    }
+    
 }

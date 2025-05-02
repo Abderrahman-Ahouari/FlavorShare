@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\RecipeLike;
 
 class RecipeLikesSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class RecipeLikesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-    }
+        RecipeLike::factory()->count(50)->create();
+    } 
 }

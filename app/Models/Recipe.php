@@ -43,6 +43,11 @@ class Recipe extends Model
         return $this->belongsToMany(Category::class, 'category_recipes');
     }
 
+    public function recipe_likes()
+    {
+        return $this->hasMany(recipe_likes::class);
+    }
+
     public function images()
     {
         return $this->hasMany(recipe_image::class);
