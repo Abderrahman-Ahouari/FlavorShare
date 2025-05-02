@@ -386,7 +386,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
      // Video Type Toggle
-     const videoTypeUrl = document.getElementById('video-type-url');
+        const videoTypeUrl = document.getElementById('video-type-url');
         const videoTypeFile = document.getElementById('video-type-file');
         const videoUrlContainer = document.getElementById('video-url-container');
         const videoFileContainer = document.getElementById('video-file-container');
@@ -412,13 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         
-        // Remove video file
-        removeVideoFile.addEventListener('click', function() {
-            videoFileInput.value = '';
-            videoPreviewSource.src = '';
-            videoPlayer.load();
-            videoFilePreview.classList.add('hidden');
-        });
+
     
      
     // ============= Tags Input =============

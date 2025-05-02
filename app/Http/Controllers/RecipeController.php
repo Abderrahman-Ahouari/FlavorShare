@@ -68,7 +68,7 @@ class RecipeController extends Controller
     
         // ✅ Handle tags: create if not exists
         $tagIds = [];
-        if (!empty($validated['tags'])) {       
+        if (!empty($validated['tags'])) {  
             foreach ($validated['tags'] as $tagName) {
                 $tag = \App\Models\Tag::firstOrCreate(['name' => $tagName]);
                 $tagIds[] = $tag->id;
