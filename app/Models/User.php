@@ -53,5 +53,39 @@ class User extends Authenticatable
     {
         return $this->hasMany(recipe_likes::class);
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
     
+    public function comments()
+    {
+        return $this->hasMany(comment::class);
+    }
+
+    public function comment_reactions()
+    {
+        return $this->hasMany(CommentReaction::class);
+    }
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
+    
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'user_followers', 'following_id', 'follower_id');
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'user_followers', 'follower_id', 'following_id');
+    }
 }

@@ -58,6 +58,15 @@ class Recipe extends Model
         return $this->hasMany(recipe_steps::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(comment::class);
+    }
     public function ingredients()
     {
         return $this->belongsToMany(ingredient::class, 'ingredient_recipes')
