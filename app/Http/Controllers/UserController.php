@@ -9,9 +9,10 @@ use App\Models\Recipe;
 
 class UserController extends Controller
 {
-    public function account_view()
+    public function account_view(Request $request)
     {
-        $user = Auth::user();
+        $userId = $request->input('user_id');
+        $user = $userId ? User::find($userId) : Auth::user();
         if (!$user) {
             return redirect()->route('login_page');
         }
