@@ -32,4 +32,9 @@ class comment extends Model
     {
         return $this->belongsTo(Comment::class, 'parent_comment_id');
     }
+
+    public function reactions()
+    {
+        return $this->hasMany(CommentReaction::class);
+    }
 }
