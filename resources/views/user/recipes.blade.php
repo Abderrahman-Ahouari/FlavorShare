@@ -65,7 +65,7 @@
                     <h1 class="text-3xl font-bold text-gray-800">Recipes</h1>
                     <div class="flex items-center">
                         <span class="mr-2 text-gray-600">Sort by:</span>
-                        <form id="sortForm" method="GET" action="{{ route('recipes') }}">
+                        <form id="sortForm" method="GET" action="{{ route('recipes_page') }}">
                             <!-- Hidden inputs for currently selected filters -->
                             @if(request()->has('categories'))
                                 @foreach(request()->categories as $category)
@@ -115,7 +115,7 @@
                     @empty
                     <div class="col-span-full text-center py-8">
                         <p class="text-gray-500 text-lg">No recipes found matching your criteria.</p>
-                        <a href="{{ route('recipes') }}" class="mt-4 inline-block px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">View all recipes</a>
+                        <a href="{{ route('recipes_page') }}" class="mt-4 inline-block px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">View all recipes</a>
                     </div>
                     @endforelse
                 </div>
@@ -130,7 +130,7 @@
             <div class="w-full md:w-1/4">
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-semibold mb-6">Filter</h2>
-                    <form action="{{ route('recipes') }}" method="GET">
+                    <form action="{{ route('recipes_page') }}" method="GET">
                         <!-- Keep the sort parameter if set -->
                         @if(request()->has('sort'))
                             <input type="hidden" name="sort" value="{{ request()->sort }}">

@@ -40,6 +40,11 @@ Route::get('/home_view',function(){
     return view('user.home');
 })->name('home_page');
 
+Route::get('/contact_view',function(){
+    return view('user.contact');
+})->name('contact_page');
+
+
 Route::get('/account_view',function(){
     return view('user.account');
 })->name('account_page');
@@ -88,7 +93,7 @@ Route::get('/category-recipes/category/{categoryId}', [CategoryRecipesController
 Route::post('/recipes', [RecipeController::class, 'create'])->name('recipes.create');                                                                               
 Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']);
 Route::get('/create_recipe_view', [RecipeController::class, 'create_recipe_view'])->name('create_recipe');
-Route::get('/recipes_view', [RecipeController::class, 'index'])->name('recipes');
+Route::get('/recipes_view', [RecipeController::class, 'index'])->name('recipes_page');
 
  
 Route::get('/Ingredient_search', [IngredientController::class, 'search'])->name('Ingredient_search');

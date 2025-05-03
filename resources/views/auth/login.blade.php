@@ -52,11 +52,11 @@
         
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-6">
-            <a href="#" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
+            <a href="{{ route('contact_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
             <a href="{{ route('recipes_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
-            <a href="#" class="text-flavorshare-text hover:text-flavorshare-orange">Account</a>
-            <a href="#" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Login</a>
-            <a href="#" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">SignUp</a>
+            <a href="{{ route('account_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Account</a>
+            <a href="{{ route('login_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Login</a>
+            <a href="{{ route('signup_page') }}" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">SignUp</a>
         </nav>
         
         <!-- Mobile Menu Button -->
@@ -68,11 +68,11 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-screen bg-white z-0 flex flex-col items-center justify-center space-y-6 md:hidden">
-            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
+            <a href="{{ route('contact_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
             <a href="{{ route('recipes_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
-            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Account</a>
-            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">Login</a>
-            <a href="#" class="text-xl text-flavorshare-text hover:text-flavorshare-orange">SignUp</a>
+            <a href="{{ route('account_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Account</a>
+            <a href="{{ route('login_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Login</a>
+            <a href="{{ route('signup_page') }}" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">SignUp</a>
         </div>
     </header>
 
