@@ -17,6 +17,8 @@ class UserController extends Controller
             return redirect()->route('login_page');
         }
 
+        $isOwner = Auth::check() && $user->id === Auth::id();
+
         // Social links
         $socialLinks = [
             'facebook' => $user->facebook_link,
@@ -55,6 +57,7 @@ class UserController extends Controller
             'followersCount' => $followersCount,
             'followingCount' => $followingCount,
             'recipes' => $recipesData,
+            'isOwner' => $isOwner,
         ]);
     }
 }
