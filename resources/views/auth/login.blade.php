@@ -46,7 +46,7 @@
 <body class="bg-white min-h-screen">
     <!-- Header -->
     <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center relative">
-        <a href="#" class="flex items-center z-10">
+        <a href="{{ route('home_page') }}" class="flex items-center z-10">
             <span class="logo-text text-2xl font-bold text-black">flavor<span class="text-flavorshare-orange">share</span></span>
         </a>
         
@@ -126,7 +126,7 @@
                     <ul class="space-y-2">
                         <li><a href="#" class="hover:text-flavorshare-orange">About me</a></li>
                         <li><a href="#" class="hover:text-flavorshare-orange">Work with me</a></li>
-                        <li><a href="#" class="hover:text-flavorshare-orange">Contact</a></li>
+                        <li><a href="{{ route('contact_page') }}" class="hover:text-flavorshare-orange">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -134,10 +134,10 @@
                 <div>
                     <h3 class="font-bold uppercase mb-4">Explore</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-flavorshare-orange">Recipes</a></li>
-                        <li><a href="#" class="hover:text-flavorshare-orange">Fitness</a></li>
-                        <li><a href="#" class="hover:text-flavorshare-orange">Healthy living</a></li>
-                        <li><a href="#" class="hover:text-flavorshare-orange">Blogs</a></li>
+                        <li><a href="{{ route('recipes_page') }}" class="hover:text-flavorshare-orange">Recipes</a></li>
+                        <li><a href="{{ route('recipes_page') }}" class="hover:text-flavorshare-orange">Fitness</a></li>
+                        <li><a href="{{ route('recipes_page') }}" class="hover:text-flavorshare-orange">Healthy living</a></li>
+                        <li><a href="{{ route('recipes_page') }}" class="hover:text-flavorshare-orange">Blogs</a></li>
                     </ul>
                 </div>
                 
