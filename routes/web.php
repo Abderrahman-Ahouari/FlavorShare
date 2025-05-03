@@ -8,6 +8,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CategoryRecipesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -25,7 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+ 
 
 
 Route::get('/signup_view',function(){
@@ -45,9 +46,7 @@ Route::get('/contact_view',function(){
 })->name('contact_page');
 
 
-Route::get('/account_view',function(){
-    return view('user.account');
-})->name('account_page');
+Route::get('/account_view', [UserController::class, 'account_view'])->name('account_page');
 
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
