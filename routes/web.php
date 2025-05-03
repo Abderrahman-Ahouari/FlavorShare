@@ -36,6 +36,10 @@ Route::get('/login_view',function(){
     return view('auth.login');
 })->name('login_page');
 
+Route::get('/home_view',function(){
+    return view('user.home');
+})->name('home_page');
+
 Route::get('/account_view',function(){
     return view('user.account');
 })->name('account_page');

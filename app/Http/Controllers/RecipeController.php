@@ -46,7 +46,7 @@ class RecipeController extends Controller
         $sort = $request->get('sort', 'newest');
         if ($sort === 'oldest') {
             $query->orderBy('created_at', 'asc');
-        } elseif ($sort === 'top-rated') {
+        } elseif ($sort === 'top_rated') {
             $query->withCount('likes')->orderBy('likes_count', 'desc');
         } else { // newest or default
             $query->orderBy('created_at', 'desc');

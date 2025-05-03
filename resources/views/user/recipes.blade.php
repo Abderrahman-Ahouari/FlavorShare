@@ -142,23 +142,55 @@
                             <div class="flex flex-wrap gap-2">
                                 <div class="ingredient-pill {{ in_array(1, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
                                     <input type="checkbox" name="ingredients[]" value="1" id="ingredient-1" class="hidden" {{ in_array(1, request()->ingredients ?? []) ? 'checked' : '' }}>
-                                    <label for="ingredient-1" class="cursor-pointer">Milk</label>
+                                    <label for="ingredient-1" class="cursor-pointer">Chicken</label>
                                 </div>
                                 <div class="ingredient-pill {{ in_array(2, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
                                     <input type="checkbox" name="ingredients[]" value="2" id="ingredient-2" class="hidden" {{ in_array(2, request()->ingredients ?? []) ? 'checked' : '' }}>
-                                    <label for="ingredient-2" class="cursor-pointer">Eggs</label>
+                                    <label for="ingredient-2" class="cursor-pointer">Beef</label>
                                 </div>
-                                <div class="ingredient-pill {{ in_array(3, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
-                                    <input type="checkbox" name="ingredients[]" value="3" id="ingredient-3" class="hidden" {{ in_array(3, request()->ingredients ?? []) ? 'checked' : '' }}>
-                                    <label for="ingredient-3" class="cursor-pointer">Bread</label>
+                                <div class="ingredient-pill {{ in_array(11, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="11" id="ingredient-11" class="hidden" {{ in_array(11, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-11" class="cursor-pointer">Carrot</label>
                                 </div>
-                                <div class="ingredient-pill {{ in_array(4, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
-                                    <input type="checkbox" name="ingredients[]" value="4" id="ingredient-4" class="hidden" {{ in_array(4, request()->ingredients ?? []) ? 'checked' : '' }}>
-                                    <label for="ingredient-4" class="cursor-pointer">Onions</label>
+                                <div class="ingredient-pill {{ in_array(15, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="15" id="ingredient-15" class="hidden" {{ in_array(15, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-15" class="cursor-pointer">Onion</label>
                                 </div>
-                                <div class="ingredient-pill {{ in_array(5, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
-                                    <input type="checkbox" name="ingredients[]" value="5" id="ingredient-5" class="hidden" {{ in_array(5, request()->ingredients ?? []) ? 'checked' : '' }}>
-                                    <label for="ingredient-5" class="cursor-pointer">Potatoes</label>
+                                <div class="ingredient-pill {{ in_array(17, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="17" id="ingredient-17" class="hidden" {{ in_array(17, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-17" class="cursor-pointer">Potato</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(21, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="21" id="ingredient-21" class="hidden" {{ in_array(21, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-21" class="cursor-pointer">Apple</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(31, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="31" id="ingredient-31" class="hidden" {{ in_array(31, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-31" class="cursor-pointer">Flour</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(33, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="33" id="ingredient-33" class="hidden" {{ in_array(33, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-33" class="cursor-pointer">Salt</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(35, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="35" id="ingredient-35" class="hidden" {{ in_array(35, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-35" class="cursor-pointer">Olive Oil</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(36, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="36" id="ingredient-36" class="hidden" {{ in_array(36, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-36" class="cursor-pointer">Butter</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(38, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="38" id="ingredient-38" class="hidden" {{ in_array(38, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-38" class="cursor-pointer">Eggs</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(39, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="39" id="ingredient-39" class="hidden" {{ in_array(39, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-39" class="cursor-pointer">Rice</label>
+                                </div>
+                                <div class="ingredient-pill {{ in_array(44, request()->ingredients ?? []) ? 'selected' : '' }} px-3 py-1 border border-gray-300 rounded-full text-sm cursor-pointer">
+                                    <input type="checkbox" name="ingredients[]" value="44" id="ingredient-44" class="hidden" {{ in_array(44, request()->ingredients ?? []) ? 'checked' : '' }}>
+                                    <label for="ingredient-44" class="cursor-pointer">Garlic</label>
                                 </div>
                             </div>
                         </div>
@@ -316,14 +348,75 @@
     </footer>
 
     <script>
-        // Toggle selection for category and ingredient pills
-        document.querySelectorAll('.category-pill, .ingredient-pill').forEach(pill => {
-            pill.addEventListener('click', function() {
-                const checkbox = this.querySelector('input[type="checkbox"]');
-                checkbox.checked = !checkbox.checked;
-                this.classList.toggle('selected');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle selection for category and ingredient pills
+            document.querySelectorAll('.category-pill, .ingredient-pill').forEach(pill => {
+                pill.addEventListener('click', function(e) {
+                    // Prevent clicking on labels from triggering twice
+                    if (e.target.tagName.toLowerCase() === 'label') {
+                        e.preventDefault();
+                    }
+                    
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    checkbox.checked = !checkbox.checked;
+                    this.classList.toggle('selected');
+                });
             });
+
+            // Handle sort dropdown change - auto submit the form
+            const sortDropdown = document.getElementById('sort');
+            if (sortDropdown) {
+                sortDropdown.addEventListener('change', function() {
+                    document.getElementById('sortForm').submit();
+                });
+            }
+
+            // Animation for recipe cards
+            const recipeCards = document.querySelectorAll('.recipe-card');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-fade-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                recipeCards.forEach(card => {
+                    observer.observe(card);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                recipeCards.forEach(card => {
+                    card.classList.add('animate-fade-in');
+                });
+            }
+
+            // Clear all filters button functionality
+            const clearFiltersBtn = document.getElementById('clear-filters');
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Uncheck all checkboxes
+                    document.querySelectorAll('.category-pill input, .ingredient-pill input').forEach(checkbox => {
+                        checkbox.checked = false;
+                        checkbox.closest('.category-pill, .ingredient-pill').classList.remove('selected');
+                    });
+                    
+                    // Reset sort to default (newest)
+                    if (sortDropdown) {
+                        sortDropdown.value = 'newest';
+                    }
+                    
+                    // Submit the form to apply the cleared filters
+                    document.querySelector('form[action*="recipes.index"]').submit();
+                });
+            }
         });
     </script>
+
 </body>
 </html>     
