@@ -21,11 +21,12 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
         $query = Recipe::query()
-            ->with(['user', 'likes', 'ingredients', 'categories'])
+            ->with(['user'])
             ->where('status', '!=', 'banned')
             ->whereHas('user', function ($q) {
                 $q->where('status', '!=', 'banned');
-            });
+            })
+            ->withCount(['ingredients', 'likes']);
     
         // ✅ Filter by categories
         if ($request->has('category_ids') && is_array($request->category_ids)) {
