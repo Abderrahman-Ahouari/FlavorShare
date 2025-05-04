@@ -48,6 +48,7 @@ Route::get('/contact_view',function(){
 
 Route::get('/account_view', [UserController::class, 'account_view'])->name('account_page');
 Route::put('/update_info', [AuthController::class, 'update'])->name('profile.update');
+Route::get('/favorites_view', [UserController::class, 'favorites_view'])->name('favorites_page');
 
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
