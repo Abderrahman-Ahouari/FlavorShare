@@ -182,7 +182,7 @@ class RecipeController extends Controller
     }
 
     public function recipe_details($id)
-    {
+    {                 
         $recipe = Recipe::with([
             'user',
             'images',
