@@ -52,7 +52,7 @@ class UserController extends Controller
         });
 
         return view('user.account', [
-            'user' => $user,
+            'user' => $user,                       
             'socialLinks' => $socialLinks,
             'followersCount' => $followersCount,
             'followingCount' => $followingCount,
