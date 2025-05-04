@@ -13,8 +13,6 @@ use App\Models\recipe_likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class RecipeController extends Controller
 {
 
@@ -58,8 +56,6 @@ class RecipeController extends Controller
         return view('user.recipes', compact('recipes'));
     }
     
-
-
     public function create(Request $request)
     {
         $validated = $request->validate([
@@ -141,10 +137,8 @@ class RecipeController extends Controller
         }
 
         return redirect()->route('account_page');
-
     }
 
-    
     public function update(Request $request, Recipe $recipe)
     {
         $data = $request->validate([
@@ -172,7 +166,6 @@ class RecipeController extends Controller
         return response()->json($recipe);
     }
     
-    
     public function delete(Recipe $recipe)
     {
         $this->authorize('delete', $recipe); // optional
@@ -182,12 +175,28 @@ class RecipeController extends Controller
         return response()->json(['message' => 'Recipe deleted successfully.']);
     }
 
-
     public function create_recipe_view()
     {
         $categories = Category::all();    
         return view('user.create_recipe', compact('categories',));
     }
-    
-    
+
+    public function recipe_details($id)
+    {
+        $recipe = Recipe::with([
+            'user',
+            'images',
+            'steps',
+            'categories',
+            'ingredients',
+            'comments.user',
+            'comments.comment_reactions',
+        ])
+        ->withCount(['likes', 'favorites'])
+        ->findOrFail($id);
+
+        return view('user.recipe_details', [
+            'recipe' => $recipe
+        ]);
+    }
 }

@@ -92,7 +92,7 @@
                     <button type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Follow</button>
                 @else
                     <button id="edit-profile-btn" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Edit Profile</button>
-                    <button id="edit-profile-btn" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Favorites</button>
+                    <a href="{{ route('favorites_page') }}" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Favorites</a>    
                 @endif
 
             </div>
