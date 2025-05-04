@@ -140,7 +140,7 @@ class RecipeController extends Controller
             $recipe->steps()->create(['description' => $step['description']]);
         }
 
-        return redirect()->route('user_account')->with('success', 'Recipe created!');
+        return redirect()->route('account_page');
 
     }
 

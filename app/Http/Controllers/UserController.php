@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Recipe;
+use App\Models\UserFollower;
+use App\Models\RecipeFavorite;
+use App\Models\RecipeLike;
+use App\Models\RecipeComment;
+
 
 class UserController extends Controller
 {
@@ -52,12 +57,38 @@ class UserController extends Controller
         });
 
         return view('user.account', [
-            'user' => $user,                       
+            'user' => $user,
+            'bio' => $user->bio,
             'socialLinks' => $socialLinks,
             'followersCount' => $followersCount,
             'followingCount' => $followingCount,
             'recipes' => $recipesData,
             'isOwner' => $isOwner,
+        ]);
+    }
+        
+    public function favorites_view()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login_page');
+        }
+
+        // Get recipes the user has saved as favorites
+        $favoriteRecipes = $user->favorites()->with(['recipe' => function($query) {
+            $query->withCount(['likes', 'comments', 'favorites']);
+        }])->get()->pluck('recipe');
+
+        $recipesData = $favoriteRecipes->map(function ($recipe) {
+            return [
+                'id' => $recipe->id,
+                'cover_image' => $recipe->cover_image,
+                'title' => $recipe->title,            
+            ];
+        });
+
+        return view('user.favorites', [
+            'recipes' => $recipesData,
         ]);
     }
 }

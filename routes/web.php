@@ -47,12 +47,11 @@ Route::get('/contact_view',function(){
 
 
 Route::get('/account_view', [UserController::class, 'account_view'])->name('account_page');
+Route::put('/update_info', [AuthController::class, 'update'])->name('profile.update');
 
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
-
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

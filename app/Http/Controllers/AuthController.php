@@ -56,7 +56,7 @@ class AuthController extends Controller
         return redirect()->route('auth.login');
     }
 
-    public function modify_info(Request $request)
+    public function update(Request $request)
 {
     $user = Auth::user();
 

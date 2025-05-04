@@ -42,7 +42,7 @@
             transform: translateY(0);
         }
     </style>
-</head>
+</head> 
 <body class="bg-white min-h-screen">
     <!-- Header -->
     <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center relative">
