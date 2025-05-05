@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('comment_id')->constrained('comments')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('reaction_type', ['like', 'dislike']);
+            $table->enum('reaction_type', ['like']);
             $table->timestamps();
         });
     }
