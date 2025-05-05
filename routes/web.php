@@ -45,47 +45,21 @@ Route::get('/contact_view',function(){
     return view('user.contact');
 })->name('contact_page');
 
+Route::get('/recipe_view',function(){
+    return view('user.recipe_details');
+})->name('recipe_page');
+
 
 Route::get('/account_view', [UserController::class, 'account_view'])->name('account_page');
 Route::put('/update_info', [AuthController::class, 'update'])->name('profile.update');
 Route::get('/favorites_view', [UserController::class, 'favorites_view'])->name('favorites_page');
+// Route::get('/recipe_view', [UserController::class, 'recipe_details_view'])->name('recipe_page');
+
 
 
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-// TagController routes
-Route::get('/tags', [TagController::class, 'getall'])->name('tags.getall');
-Route::get('/tags_search', [TagController::class, 'search'])->name('tags_search');
-Route::post('/tags', [TagController::class, 'create'])->name('tags.create');
-Route::put('/tags/{id}', [TagController::class, 'update'])->name('tags.update');
-Route::delete('/tags/{id}', [TagController::class, 'delete'])->name('tags.delete');
-
-
-// tagRecipesController routes
-Route::post('/recipes/{recipeId}/tags', [TagRecipeController::class, 'attachTags']);
-Route::delete('/recipes/{recipeId}/tags', [TagRecipeController::class, 'detachTags']);
-Route::get('/recipes/{recipeId}/tags', [TagRecipeController::class, 'getTagsForRecipe']);
-Route::get('/tags/{tagId}/recipes', [TagRecipeController::class, 'getRecipesForTag']);
-Route::put('/recipes/{recipeId}/tags', [TagRecipeController::class, 'syncTags']);
-
-
-// CategoryController routes
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories_search', [CategoryController::class, 'search']);
-Route::post('/categories', [CategoryController::class, 'store']);
-Route::put('/categories/{category}', [CategoryController::class, 'update']);
-Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
-
-
-// CategoryRecipesController routes
-Route::post('/category-recipes/attach/{recipeId}', [CategoryRecipesController::class, 'attachCategories']);
-Route::post('/category-recipes/detach/{recipeId}', [CategoryRecipesController::class, 'detachCategories']);
-Route::post('/category-recipes/sync/{recipeId}', [CategoryRecipesController::class, 'syncCategories']);
-Route::get('/category-recipes/recipe/{recipeId}', [CategoryRecipesController::class, 'getCategoriesForRecipe']);
-Route::get('/category-recipes/category/{categoryId}', [CategoryRecipesController::class, 'getRecipesForCategory']);
 
 
 // RecipeController routes
