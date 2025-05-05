@@ -22,10 +22,4 @@ class comment extends Model
     {
         return $this->belongsTo(Recipe::class);
     }
-
-
-    public function reactions()
-    {
-        return $this->hasMany(CommentReaction::class);
-    }
 }

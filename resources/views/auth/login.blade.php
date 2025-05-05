@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> 
 
     <script>
         // Mobile menu toggle
