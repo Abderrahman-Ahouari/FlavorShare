@@ -13,6 +13,7 @@ class RecipeStep extends Model
         'recipe_id',
         'description',
     ];
+    protected $table = 'recipe_steps';
 
     public function recipe()
     {

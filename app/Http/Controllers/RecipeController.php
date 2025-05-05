@@ -7,7 +7,7 @@ use App\Models\recipe;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Ingredient;
-use App\Models\recipe_steps;
+use App\Models\RecipeStep;
 use App\Models\recipe_image;
 use App\Models\recipe_likes;
 use Illuminate\Support\Facades\Auth;
