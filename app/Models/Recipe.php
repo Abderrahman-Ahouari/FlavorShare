@@ -22,9 +22,6 @@ class Recipe extends Model
     ];
     
 
-    protected $casts = [
-        'steps' => 'array',
-    ];
 
 
 

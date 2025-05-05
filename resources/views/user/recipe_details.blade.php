@@ -96,7 +96,7 @@
                 @if($recipe->images)
                 <div class="flex gap-2 mt-2">
                     @foreach($recipe->images as $image)
-                        <img src="{{ asset('storage/' . $image->image) }}" alt="Recipe image" class="w-20 h-20 object-cover rounded">
+                        <img src="{{ asset('http://127.0.0.1:8000/storage' . $image->image) }}" alt="Recipe image" class="w-20 h-20 object-cover rounded">
                     @endforeach
                 </div>
                 @endif
@@ -168,6 +168,7 @@
                         </div>
                     @endforeach
                     @endif
+                    {{-- {{ dd($recipe->steps) }} --}}
                 </div>
             </div>
         </div>
