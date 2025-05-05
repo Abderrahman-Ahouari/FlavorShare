@@ -9,7 +9,7 @@ class comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'recipe_id', 'parent_comment_id', 'content'];
+    protected $fillable = ['user_id', 'recipe_id', 'content'];
 
 
 
@@ -23,15 +23,6 @@ class comment extends Model
         return $this->belongsTo(Recipe::class);
     }
 
-    public function replies()
-    {
-        return $this->hasMany(Comment::class, 'parent_comment_id');
-    }
-
-    public function parentComment()
-    {
-        return $this->belongsTo(Comment::class, 'parent_comment_id');
-    }
 
     public function reactions()
     {
