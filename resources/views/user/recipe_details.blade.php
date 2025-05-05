@@ -91,38 +91,50 @@
         <!-- Recipe Header and Image -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div class="rounded-lg overflow-hidden">
-                <img src="/api/placeholder/600/400" alt="Buffalo Chicken TACOS" class="w-full h-full object-cover">
+                <img src="{{ asset('storage/' . $recipe->cover_image) }}" alt="{{ $recipe->title }}" class="w-full h-full object-cover">
+                <!-- Additional images -->
+                @if($recipe->images)
+                <div class="flex gap-2 mt-2">
+                    @foreach($recipe->images as $image)
+                        <img src="{{ asset('storage/' . $image->image) }}" alt="Recipe image" class="w-20 h-20 object-cover rounded">
+                    @endforeach
+                </div>
+                @endif
             </div>
             <div class="flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white">
-                            <i class="fas fa-user"></i>
+                        <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white overflow-hidden">
+                            @if($recipe->user && $recipe->user->profile_image)
+                                <img src="{{ asset('storage/profiles/' . $recipe->user->profile_image) }}" alt="{{ $recipe->user->name }}" class="w-full h-full object-cover">
+                            @else
+                                <i class="fas fa-user"></i>
+                            @endif
                         </div>
-                        <span class="text-gray-800">by teresa porter</span>
+                        <span class="text-gray-800">by {{ $recipe->user->name ?? 'Unknown' }}</span>
                         <div class="ml-auto flex items-center gap-2">
                             <button id="favorite-btn" class="flex items-center gap-1 text-gray-700">
                                 <i class="far fa-bookmark"></i>
-                                <span>15</span>
+                                <span>{{ $recipe->favorites_count }}</span>
                             </button>
                             <button id="like-btn" class="flex items-center gap-1 text-gray-700 ml-4">
                                 <i class="far fa-thumbs-up"></i>
-                                <span>65</span>
+                                <span>{{ $recipe->likes_count }}</span>
                             </button>
                         </div>
                     </div>
 
-                    <h1 class="text-3xl font-bold mb-4">Buffalo Chicken TACOS</h1>
-                    
+                    <h1 class="text-3xl font-bold mb-4">{{ $recipe->title }}</h1>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-primary text-sm px-3 py-1 rounded-full">Spicy</span>
-                        <span class="bg-primary text-sm px-3 py-1 rounded-full">Healthy</span>
-                        <span class="bg-primary text-sm px-3 py-1 rounded-full">30 min</span>
+                        @if($recipe->categories)
+                        @foreach($recipe->categories as $category)
+                            <span class="bg-primary text-sm px-3 py-1 rounded-full">{{ $category->name }}</span>
+                        @endforeach
+                        @endif
+                        <span class="bg-primary text-sm px-3 py-1 rounded-full">{{ $recipe->preparation_time }} min</span>
                     </div>
-
                     <div class="text-gray-700 mb-4">
-                        <p>About this recipe Quebec is a melting pot of different cultures and cuisines. There is a burgeoning north African and Middle Eastern community in this beautiful city, so this classic tagine with maple syrup as a delicate sweetener is a nod to how native Canadian...</p>
-                        <button class="text-primary font-medium">more</button>
+                        <p>{{ $recipe->description }}</p>
                     </div>
                 </div>
             </div>
@@ -134,37 +146,28 @@
             <div class="bg-white p-6 rounded-lg shadow-sm">
                 <h2 class="text-2xl font-bold mb-6">Ingredients</h2>
                 <div class="space-y-3">
-                    <div class="bg-gray-100 px-4 py-2 rounded-full inline-block">
-                        <span class="font-medium">100 g</span> Potatoes
-                    </div>
-                    <!-- Add more ingredients as needed -->
+                    @if($recipe->ingredients)
+                    @foreach($recipe->ingredients as $ingredient)
+                        <div class="bg-gray-100 px-4 py-2 rounded-full inline-block">
+                            <span class="font-medium">{{ $ingredient->pivot->quantity }} {{ $ingredient->pivot->unit }}</span> {{ $ingredient->name }}
+                        </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
 
             <!-- Instructions -->
             <div class="bg-white p-6 rounded-lg shadow-sm md:col-span-2">
                 <h2 class="text-2xl font-bold mb-6">Instructions</h2>
-                
                 <div class="space-y-6">
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">step 1</h3>
-                        <p class="text-gray-700">Heat the oil in a non-stick frying pan over a medium heat. Add the onion and garlic and cook, stirring occasionally, for 4-5 minutes until a little golden.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">step 2</h3>
-                        <p class="text-gray-700">Heat the oil in a non-stick frying pan over a medium heat. Add the onion and garlic and cook, stirring occasionally, for 4-5 minutes until a little golden.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">step 3</h3>
-                        <p class="text-gray-700">Heat the oil in a non-stick frying pan over a medium heat. Add the onion and garlic and cook, stirring occasionally, for 4-5 minutes until a little golden.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">step 4</h3>
-                        <p class="text-gray-700">Heat the oil in a non-stick frying pan over a medium heat. Add the onion and garlic and cook, stirring occasionally, for 4-5 minutes until a little golden.</p>
-                    </div>
+                    @if($recipe->steps)
+                    @foreach($recipe->steps as $index => $step)
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Step {{ $index + 1 }}</h3>
+                            <p class="text-gray-700">{{ $step->description }}</p>
+                        </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -175,17 +178,26 @@
                 <h2 class="text-2xl font-bold">Comments</h2>
                 <button class="bg-primary text-white px-4 py-2 rounded-full">Leave a comment</button>
             </div>
-
-            <!-- Comments -->
             <div class="border-t pt-4">
-                <div class="flex gap-4 mb-4">
-                    <div class="w-10 h-10 rounded-full bg-gray-300 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium">teresa porter</h3>
-                        <p class="text-gray-700">Put rice on the bottom instead of chips.</p>
+                @if($recipe->comments)
+                @forelse($recipe->comments as $comment)
+                    <div class="flex gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 flex-shrink-0 overflow-hidden">
+                            @if($comment->user && $comment->user->profile_image)
+                                <img src="{{ asset('storage/profiles/' . $comment->user->profile_image) }}" alt="{{ $comment->user->name }}" class="w-full h-full object-cover">
+                            @else
+                                <span class="text-gray-500 flex items-center justify-center w-full h-full">{{ $comment->user->name[0] ?? '?' }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <h3 class="font-medium">{{ $comment->user->name ?? 'Unknown' }}</h3>
+                            <p class="text-gray-700">{{ $comment->content }}</p>
+                        </div>
                     </div>
-                </div>
-                <!-- Add more comments as needed -->
+                @empty
+                    <p class="text-gray-500">No comments yet. Be the first to comment!</p>
+                @endforelse
+                @endif
             </div>
         </div>
     </main>

@@ -181,7 +181,7 @@ class RecipeController extends Controller
         return view('user.create_recipe', compact('categories',));
     }
 
-    public function recipe_details($id)
+    public function recipe_details_view($id)
     {
         $recipe = Recipe::with([
             'user',
@@ -190,13 +190,10 @@ class RecipeController extends Controller
             'categories',
             'ingredients',
             'comments.user',
-            'comments.comment_reactions',
         ])
         ->withCount(['likes', 'favorites'])
         ->findOrFail($id);
 
-        return view('user.recipe_details', [
-            'recipe' => $recipe
-        ]);
+        return view('user.recipe_details', compact('recipe'));
     }
 }
