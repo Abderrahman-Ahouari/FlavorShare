@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class recipe_steps extends Model
+class RecipeStep extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,6 @@ class recipe_steps extends Model
         'description',
     ];
 
-
-    
     public function recipe()
     {
         return $this->belongsTo(Recipe::class);
