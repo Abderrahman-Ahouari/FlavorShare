@@ -138,22 +138,11 @@
             </div>
         </div>
 
-        <!-- Notes and Comments -->
+        <!-- Comments -->
         <div class="bg-white p-6 rounded-lg shadow-sm mt-8">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">Notes</h2>
+                <h2 class="text-2xl font-bold">Comments</h2>
                 <button class="bg-primary text-white px-4 py-2 rounded-full">Leave a comment</button>
-            </div>
-
-            <div class="flex items-center gap-4 mb-6">
-                <button id="thumbs-up" class="flex items-center gap-1">
-                    <i class="far fa-thumbs-up text-green-500 text-xl"></i>
-                    <span>46 liked</span>
-                </button>
-                <button id="thumbs-down" class="flex items-center gap-1">
-                    <i class="far fa-thumbs-down text-red-500 text-xl"></i>
-                    <span>4 disliked</span>
-                </button>
             </div>
 
             <!-- Comments -->
