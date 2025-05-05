@@ -92,21 +92,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div class="rounded-lg overflow-hidden">
                 <img src="{{ asset('storage/' . $recipe->cover_image) }}" alt="{{ $recipe->title }}" class="w-full h-full object-cover">
-                <!-- Additional images -->
-                @if($recipe->images)
-                <div class="flex gap-2 mt-2">
-                    @foreach($recipe->images as $image)
-                        <img src="{{ asset('http://127.0.0.1:8000/storage' . $image->image) }}" alt="Recipe image" class="w-20 h-20 object-cover rounded">
-                    @endforeach
-                </div>
-                @endif
             </div>
             <div class="flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
                         <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white overflow-hidden">
                             @if($recipe->user && $recipe->user->profile_image)
-                                <img src="{{ asset('storage/profiles/' . $recipe->user->profile_image) }}" alt="{{ $recipe->user->name }}" class="w-full h-full object-cover">
+                                <img src="{{ asset('http://127.0.0.1:8000/storage/' . $recipe->user->profile_image) }}" alt="{{ $recipe->user->name }}" class="w-full h-full object-cover">
                             @else
                                 <i class="fas fa-user"></i>
                             @endif
@@ -122,7 +114,7 @@
                                 <span>{{ $recipe->likes_count }}</span>
                             </button>
                         </div>
-                    </div>
+                    </div>  
 
                     <h1 class="text-3xl font-bold mb-4">{{ $recipe->title }}</h1>
                     <div class="flex flex-wrap gap-2 mb-6">
