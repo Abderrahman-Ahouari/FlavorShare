@@ -51,7 +51,7 @@ class TagRecipeController extends Controller
         $tag = Tag::findOrFail($tagId);
 
         $recipes = $tag->recipes;
-
+ 
         return response()->json($recipes);
     }
 

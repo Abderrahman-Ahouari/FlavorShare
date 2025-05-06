@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $user->name }} - FlavorShare</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -80,7 +81,7 @@
                     @endif
                 </div>
                 <div>
-                    <h1 class="text-xl font-medium text-gray-800">{{ $user->name }}</h1>
+                    <h1 class="text-xl font-medium text-gray-800">{{ $user->name }}</h1> 
                     <div class="flex gap-6 mt-1 text-sm">
                         <span><strong>{{ $followingCount }}</strong> Following</span>
                         <span><strong>{{ $followersCount }}</strong> Followers</span>
@@ -89,7 +90,18 @@
             </div>
             <div class="flex gap-3">
                 @if(!$isOwner)
-                    <button type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Follow</button>
+                <button id="follow-btn"
+                    class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition"
+                    data-user="{{ $user->id }}"
+                    style="{{ $isFollowing ? 'display:none;' : '' }}">
+                    Follow
+                </button>
+                <button id="unfollow-btn"
+                    class="bg-gray-300 text-gray-800 px-4 py-1.5 rounded hover:bg-gray-400 transition"
+                    data-user="{{ $user->id }}"
+                    style="{{ $isFollowing ? '' : 'display:none;' }}">
+                    Unfollow
+                </button>
                 @else
                     <button id="edit-profile-btn" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Edit Profile</button>
                     <a href="{{ route('favorites_page') }}" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Favorites</a>    
@@ -420,6 +432,22 @@
                 }
             });
         }
+
+
+        $('#follow-btn').on('click', function() {
+            var userId = $(this).data('user');
+            $.post('/users/' + userId + '/follow', {_token: '{{ csrf_token() }}'}, function(res) {
+                $('#follow-btn').hide();
+                $('#unfollow-btn').show();
+            });
+        });
+        $('#unfollow-btn').on('click', function() {
+            var userId = $(this).data('user');
+            $.post('/users/' + userId + '/unfollow', {_token: '{{ csrf_token() }}'}, function(res) {
+                $('#unfollow-btn').hide();
+                $('#follow-btn').show();
+            });
+        });
     </script>
 </body>
 </html>

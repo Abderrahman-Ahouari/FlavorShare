@@ -68,7 +68,7 @@ Route::post('/recipes/{recipe}/comments', [CommentController::class, 'create'])-
  
 Route::get('/Ingredient_search', [IngredientController::class, 'search'])->name('Ingredient_search');
 
-
+  
 
 // Follow a user
 Route::post('/users/{userId}/follow', [UserController::class, 'follow'])->name('user.follow');

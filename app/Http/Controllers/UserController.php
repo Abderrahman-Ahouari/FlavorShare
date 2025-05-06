@@ -23,13 +23,18 @@ class UserController extends Controller
 
         $isOwner = Auth::check() && $user->id === Auth::id();
 
+        $isFollowing = false;
+        if (Auth::check() && !$isOwner) {
+            $isFollowing = $user->followers()->where('id', Auth::id())->exists();
+        }
+
         $socialLinks = [
             'facebook' => $user->facebook_link,
             'instagram' => $user->instagram_link,
             'twitter' => $user->twitter_link,
             'youtube' => $user->youtube_link,
             'tiktok' => $user->tiktok_link,
-        ];
+        ]; 
         $socialLinks = array_filter($socialLinks);
 
         $followersCount = $user->followers()->count();
@@ -60,6 +65,7 @@ class UserController extends Controller
             'followingCount' => $followingCount,
             'recipes' => $recipesData,
             'isOwner' => $isOwner,
+            'isFollowing' => $isFollowing,
         ]);
     }
         
@@ -101,8 +107,6 @@ class UserController extends Controller
             'follower_id' => $user->id,
             'following_id' => $userToFollow->id,
         ]);
-    
-        return response()->json(['message' => 'Successfully followed user.']);
     }
     
 
@@ -119,8 +123,6 @@ class UserController extends Controller
             'follower_id' => $user->id,
             'following_id' => $userToUnfollow->id,
         ])->delete();
-    
-        return response()->json(['message' => 'Successfully unfollowed user.']);
     }
 
     
@@ -128,18 +130,23 @@ class UserController extends Controller
     public function getFollowers($userId)
     {
         $user = User::findOrFail($userId);
-        $followers = $user->followers()->with('follower')->get();
-
-        return response()->json($followers);
+        $followers = $user->followers;
+        return view('user.followers_following', [
+            'users' => $followers,
+            'type' => 'followers',
+            'profileUser' => $user,
+        ]);
     }
 
     public function getFollowings($userId)
     {
         $user = User::findOrFail($userId);
-        $followings = $user->followings()->with('followed')->get();
-
-        return response()->json($followings);
+        $followings = $user->followings;
+        return view('user.followers_following', [
+            'users' => $followings,
+            'type' => 'followings',
+            'profileUser' => $user,
+        ]);
     }
-
     
 }
