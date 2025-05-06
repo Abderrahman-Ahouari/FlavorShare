@@ -20,7 +20,7 @@ class Recipe extends Model
         'video',
         'video_type',
     ];
-    
+                  
 
 
 
