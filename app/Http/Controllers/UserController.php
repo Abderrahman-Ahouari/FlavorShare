@@ -87,4 +87,59 @@ class UserController extends Controller
             'recipes' => $recipesData,
         ]);
     }
+
+    public function follow(Request $request, $userId)
+    {
+        $userToFollow = User::findOrFail($userId);
+        $user = Auth::user();
+    
+        if ($user->id === $userToFollow->id) {
+            return response()->json(['message' => 'You cannot follow yourself.'], 400);
+        }
+    
+        UserFollower::firstOrCreate([
+            'follower_id' => $user->id,
+            'following_id' => $userToFollow->id,
+        ]);
+    
+        return response()->json(['message' => 'Successfully followed user.']);
+    }
+    
+
+    public function unfollow(Request $request, $userId)
+    {
+        $userToUnfollow = User::findOrFail($userId);
+        $user = Auth::user();
+    
+        if ($user->id === $userToUnfollow->id) {
+            return response()->json(['message' => 'You cannot unfollow yourself.'], 400);
+        }
+    
+        UserFollower::where([
+            'follower_id' => $user->id,
+            'following_id' => $userToUnfollow->id,
+        ])->delete();
+    
+        return response()->json(['message' => 'Successfully unfollowed user.']);
+    }
+
+    
+
+    public function getFollowers($userId)
+    {
+        $user = User::findOrFail($userId);
+        $followers = $user->followers()->with('follower')->get();
+
+        return response()->json($followers);
+    }
+
+    public function getFollowings($userId)
+    {
+        $user = User::findOrFail($userId);
+        $followings = $user->followings()->with('followed')->get();
+
+        return response()->json($followings);
+    }
+
+    
 }
