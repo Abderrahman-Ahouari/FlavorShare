@@ -172,7 +172,7 @@
                 <button id="show-comment-form" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Leave a comment</button>
             </div>
             <!-- Comment Form Modal -->
-            <div id="comment-form-modal" class=" fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 ">
+            <div id="comment-form-modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 ">
                 <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
                     <button id="close-comment-form" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
                     <h3 class="text-lg font-bold mb-4">Add a Comment</h3>
@@ -273,6 +273,33 @@
     </footer> 
 
     <script>
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const showCommentFormBtn = document.getElementById('show-comment-form');
+            const commentFormModal = document.getElementById('comment-form-modal');
+            const closeCommentFormBtn = document.getElementById('close-comment-form');
+            
+            // Show comment form when clicking the "Leave a comment" button
+            showCommentFormBtn.addEventListener('click', function() {
+                commentFormModal.classList.remove('hidden');
+                // Prevent scrolling on the body when modal is open
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Hide comment form when clicking the close button
+            closeCommentFormBtn.addEventListener('click', function() {
+                commentFormModal.classList.add('hidden');
+                // Re-enable scrolling
+                document.body.style.overflow = 'auto';
+            });
+            
+        });
+
+
+
         // Toggle favorite button
         const favoriteBtn = document.getElementById('favorite-btn');
         let isFavorite = false;
