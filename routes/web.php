@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryRecipesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 
 
 /*
