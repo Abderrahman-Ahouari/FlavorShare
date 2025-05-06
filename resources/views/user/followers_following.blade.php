@@ -19,6 +19,7 @@
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
@@ -57,9 +58,12 @@
                         <p class="text-gray-500 text-sm truncate">{{ $user->bio ?? 'No bio available' }}</p>
                     </div>
                     <div class="flex gap-2 items-center">
-                        <button class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition">Follow</button>
-                        <button class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition">Unfollow</button>
-                        <a href="#" class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition text-center">See Profile</a>
+                        @if(in_array($user->id, $authFollowings))
+                        <button class="follow-toggle bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition" data-user-id="{{ $user->id }}" data-action="unfollow">Unfollow</button>
+                        @else
+                        <button class="follow-toggle bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition" data-user-id="{{ $user->id }}" data-action="follow">Follow</button>
+                        @endif
+                        <a href="{{ route('account_page', $user->id) }}" class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition text-center">See Profile</a>
                     </div>
                 </div>
             @empty
@@ -132,22 +136,30 @@
 
     <script>
         // JavaScript for follow button functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const followButtons = document.querySelectorAll('button');
-            
-            followButtons.forEach(button => {
-                if (button.textContent === 'Follow') {
-                    button.addEventListener('click', function() {
-                        if (this.textContent === 'Follow') {
-                            this.textContent = 'Following';
-                            this.classList.remove('bg-orange-500', 'hover:bg-orange-600');
-                            this.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-                        } else {
-                            this.textContent = 'Follow';
-                            this.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-                            this.classList.add('bg-orange-500', 'text-white', 'hover:bg-orange-600');
-                        }
-                    });
+        $(document).on('click', '.follow-toggle', function() {
+            var btn = $(this);
+            var userId = btn.data('user-id');
+            var action = btn.data('action');
+            var url = action === 'follow'
+                ? '/users/' + userId + '/follow'
+                : '/users/' + userId + '/unfollow';
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(res) {
+                    if (action === 'follow') {
+                        btn.text('Unfollow');
+                        btn.data('action', 'unfollow');
+                    } else {
+                        btn.text('Follow');
+                        btn.data('action', 'follow');
+                    }
+                },
+                error: function(xhr) {
+                    alert(xhr.responseJSON?.message || 'Action failed.');
                 }
             });
         });

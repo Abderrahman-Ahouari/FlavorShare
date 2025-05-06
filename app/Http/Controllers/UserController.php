@@ -130,22 +130,32 @@ class UserController extends Controller
     public function getFollowers($userId)
     {
         $user = User::findOrFail($userId);
-        $followers = $user->followers;
+        $followers = $user->followers()->where('id', '!=', Auth::id())->get();
+        $authFollowings = [];
+        if (Auth::check()) {
+            $authFollowings = Auth::user()->followings()->pluck('id')->toArray();
+        }
         return view('user.followers_following', [
             'users' => $followers,
             'type' => 'followers',
             'profileUser' => $user,
+            'authFollowings' => $authFollowings,
         ]);
     }
 
     public function getFollowings($userId)
     {
         $user = User::findOrFail($userId);
-        $followings = $user->followings;
+        $followings = $user->followings()->where('id', '!=', Auth::id())->get();
+        $authFollowings = [];
+        if (Auth::check()) {
+            $authFollowings = Auth::user()->followings()->pluck('id')->toArray();
+        }
         return view('user.followers_following', [
             'users' => $followings,
             'type' => 'followings',
             'profileUser' => $user,
+            'authFollowings' => $authFollowings,
         ]);
     }
     
