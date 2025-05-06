@@ -169,7 +169,7 @@
         <div class="bg-white p-6 rounded-lg shadow-sm mt-8">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold">Comments</h2>
-                <button class="bg-primary text-white px-4 py-2 rounded-full">Leave a comment</button>
+                <button type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">leave a comment</button>
             </div>
             <div class="border-t pt-4">
                 @if($recipe->comments)

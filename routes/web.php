@@ -47,8 +47,7 @@ Route::get('/contact_view',function(){
 
 
 
-
-Route::get('/account_view', [UserController::class, 'account_view'])->name('account_page');
+Route::get('/account/{userId?}', [UserController::class, 'account_view'])->name('account_page');
 Route::put('/update_info', [AuthController::class, 'update'])->name('profile.update');
 Route::get('/favorites_view', [UserController::class, 'favorites_view'])->name('favorites_page');
 Route::get('/recipe/{id}', [RecipeController::class, 'recipe_details_view'])->name('recipe_page');  

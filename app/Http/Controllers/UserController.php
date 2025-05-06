@@ -14,17 +14,15 @@ use App\Models\RecipeComment;
 
 class UserController extends Controller
 {
-    public function account_view(Request $request)
+    public function account_view($userId = null)
     {
-        $userId = $request->input('user_id');
         $user = $userId ? User::find($userId) : Auth::user();
         if (!$user) {
-            return redirect()->route('login_page');
+            abort(404, 'User not found');
         }
 
         $isOwner = Auth::check() && $user->id === Auth::id();
 
-        // Social links
         $socialLinks = [
             'facebook' => $user->facebook_link,
             'instagram' => $user->instagram_link,
@@ -32,14 +30,12 @@ class UserController extends Controller
             'youtube' => $user->youtube_link,
             'tiktok' => $user->tiktok_link,
         ];
-        $socialLinks = array_filter($socialLinks); // Only available links
+        $socialLinks = array_filter($socialLinks);
 
-        // Followers and following count
         $followersCount = $user->followers()->count();
         $followingCount = $user->followings()->count();
 
-        // Recipes sorted by most liked
-        $recipes = Recipe::where('user_id', $user->id)
+        $recipes = $user->recipes()
             ->withCount(['likes', 'comments', 'favorites'])
             ->orderByDesc('likes_count')
             ->get(['id', 'title', 'cover_image', 'created_at']);
