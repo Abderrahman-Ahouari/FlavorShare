@@ -169,7 +169,19 @@
         <div class="bg-white p-6 rounded-lg shadow-sm mt-8">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold">Comments</h2>
-                <button type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">leave a comment</button>
+                <button id="show-comment-form" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Leave a comment</button>
+            </div>
+            <!-- Comment Form Modal -->
+            <div id="comment-form-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 ">
+                <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                    <button id="close-comment-form" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+                    <h3 class="text-lg font-bold mb-4">Add a Comment</h3>
+                    <form method="POST" action="{{ route('  comments.store', $recipe->id) }}">
+                        @csrf
+                        <textarea name="content" rows="4" class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Write your comment..."></textarea>
+                        <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Send</button>
+                    </form>
+                </div>
             </div>
             <div class="border-t pt-4">
                 @if($recipe->comments)
@@ -324,7 +336,21 @@
             }
         });
 
+        // Comment form modal logic
+        const showCommentFormBtn = document.getElementById('show-comment-form');
+        const commentFormModal = document.getElementById('comment-form-modal');
+        const closeCommentFormBtn = document.getElementById('close-comment-form');
 
+        if (showCommentFormBtn && commentFormModal) {
+            showCommentFormBtn.addEventListener('click', function() {
+                commentFormModal.classList.remove('hidden');
+            });
+        }
+        if (closeCommentFormBtn && commentFormModal) {
+            closeCommentFormBtn.addEventListener('click', function() {
+                commentFormModal.classList.add('hidden');
+            });
+        }
         
         // Mobile menu toggle
         const menuToggle = document.getElementById('menu-toggle');
@@ -340,6 +366,33 @@
                 }
             });
         }
+
+
+
+                // Simple comment form toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modal elements
+            const commentFormModal = document.getElementById('comment-form-modal');
+            const showCommentFormBtn = document.getElementById('show-comment-form');
+            const closeCommentFormBtn = document.getElementById('close-comment-form');
+            
+            // Show modal when clicking "Leave a comment" button
+            showCommentFormBtn.addEventListener('click', function() {
+                commentFormModal.classList.remove('hidden');
+            });
+            
+            // Hide modal when clicking the close button
+            closeCommentFormBtn.addEventListener('click', function() {
+                commentFormModal.classList.add('hidden');
+            });
+            
+            // Hide modal when clicking outside the modal content
+            commentFormModal.addEventListener('click', function(event) {
+                if (event.target === commentFormModal) {
+                    commentFormModal.classList.add('hidden');
+                }
+            });
+        });
 
     </script>
 </body>

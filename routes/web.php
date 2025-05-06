@@ -63,6 +63,6 @@ Route::post('/recipes', [RecipeController::class, 'create'])->name('recipes.crea
 Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']);
 Route::get('/create_recipe_view', [RecipeController::class, 'create_recipe_view'])->name('create_recipe');
 Route::get('/recipes_view', [RecipeController::class, 'index'])->name('recipes_page');
-
+Route::post('/recipes/{recipe}/comments', [CommentController::class, 'create'])->name('comments.store');
  
 Route::get('/Ingredient_search', [IngredientController::class, 'search'])->name('Ingredient_search');

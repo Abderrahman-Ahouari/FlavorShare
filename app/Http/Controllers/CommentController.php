@@ -3,27 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, $recipeId)
     {
         $data = $request->validate([
-            'recipe_id' => 'required|exists:recipes,id',
             'content' => 'required|string',
-            'parent_comment_id' => 'nullable|exists:comments,id',
         ]);
-    
+
         $comment = Comment::create([
             'user_id' => auth()->id(),
-            'recipe_id' => $data['recipe_id'],
+            'recipe_id' => $recipeId,
             'content' => $data['content'],
-            'parent_comment_id' => $data['parent_comment_id'] ?? null,
         ]);
-    
-        return response()->json($comment, 201);
-    }
 
+        return redirect()->back();
+    }
 
     public function delete(Comment $comment)
     {    
@@ -31,7 +28,5 @@ class CommentController extends Controller
     
         return response()->json(['message' => 'Comment deleted successfully.']);
     }
-
-    
 
 }
