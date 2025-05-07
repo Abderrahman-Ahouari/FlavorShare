@@ -20,16 +20,24 @@ class RecipeLikesController extends Controller
         if ($like) {
             // If the user has already liked the recipe, remove the like
             $like->delete();
-            return response()->json(['message' => 'Recipe unliked successfully.']);
+            $liked = false;
         } else {
             // If the user has not liked the recipe, add a new like
             RecipeLike::create([
                 'user_id' => $user->id,
                 'recipe_id' => $recipe->id,
             ]);
+            $liked = true;
         }
-    }
 
+        // Return the new like status and count
+        $likeCount = RecipeLike::where('recipe_id', $recipe->id)->count();
+        return response()->json([
+            'liked' => $liked,
+            'like_count' => $likeCount,
+            'message' => $liked ? 'Recipe liked successfully.' : 'Recipe unliked successfully.'
+        ]);
+    }
 
     public function favorite(Request $request, $recipeId)
     {
@@ -42,13 +50,24 @@ class RecipeLikesController extends Controller
         if ($favorite) {
             // If the user has already favorited the recipe, remove the favorite
             $favorite->delete();
-            return response()->json(['message' => 'Recipe unfavorited successfully.']);
+            $favorited = false;
         } else {
             // If the user has not favorited the recipe, add a new favorite
             RecipeFavorite::create([
                 'user_id' => $user->id,
                 'recipe_id' => $recipe->id,
             ]);
+            $favorited = true;
         }
+
+        // Return the new favorite status and count
+        $favoriteCount = RecipeFavorite::where('recipe_id', $recipe->id)->count();
+        return response()->json([
+            'favorited' => $favorited,
+            'favorite_count' => $favoriteCount,
+            'message' => $favorited ? 'Recipe favorited successfully.' : 'Recipe unfavorited successfully.'
+        ]);
     }
 }
+
+

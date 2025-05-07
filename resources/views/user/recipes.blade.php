@@ -38,23 +38,78 @@
             color: white;
         }
     </style>
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'flavorshare-orange': '#FF9017',
+                    'flavorshare-text': '#333333',
+                    'flavorshare-bg': '#F8F9FA',
+                    'flavorshare-input-bg': '#FFFFFF',
+                },
+                fontFamily: {
+                    'cursive': ['cursive'],
+                }
+            }
+        }
+    }
+</script>
+<style> 
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .logo-text {
+        font-family: 'cursive', sans-serif;
+    }
+
+    .mobile-menu {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .mobile-menu.active {
+        transform: translateY(0);
+    }
+</style>
 </head>
 <body>
     <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="/" class="logo text-2xl">flavor<span>share</span></a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="/contact" class="text-gray-600 hover:text-gray-900">Contact us</a>
-                <a href="/explore" class="text-gray-600 hover:text-gray-900">Explore</a>
-                <a href="/account" class="text-gray-600 hover:text-gray-900">Account</a>
-            </nav>
-            <div class="flex items-center space-x-3">
-                <a href="/login" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Login</a>
-                <a href="/signup" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">Signup</a>
-            </div>
+    <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center relative">
+        <a href="{{ route('home_page') }}" class="flex items-center z-10">
+            <span class="logo-text text-2xl font-bold text-black">flavor<span class="text-flavorshare-orange">share</span></span>
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="{{ route('contact_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
+            <a href="{{ route('recipes_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
+            <a href="{{ route('account_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Account</a>
+            <a href="{{ route('login_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Login</a>
+            <a href="{{ route('signup_page') }}" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">SignUp</a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-flavorshare-text z-10" id="menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-screen bg-white z-0 flex flex-col items-center justify-center space-y-6 md:hidden">
+            <a href="{{ route('contact_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
+            <a href="{{ route('recipes_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
+            <a href="{{ route('account_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Account</a>
+            <a href="{{ route('login_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Login</a>
+            <a href="{{ route('signup_page') }}" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">SignUp</a>
         </div>
     </header>
+
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
@@ -90,7 +145,7 @@
                 <!-- Recipe Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @forelse($recipes as $recipe)
-                    <a href="" class="recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+                    <a href="{{ route('recipe_page', $recipe['id']) }}" class="recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
                         <div class="relative">
                             <img src="http://127.0.0.1:8000/storage{{ asset($recipe->cover_image) }}" alt="{{ $recipe->title }}" class="w-full h-48 object-cover">
                             <div class="absolute top-2 left-2 bg-black bg-opacity-60 text-white rounded-full px-2 py-1 text-sm flex items-center">
@@ -102,7 +157,7 @@
                             <div class="absolute bottom-2 left-2 flex items-center">
                                 <img src="http://127.0.0.1:8000/storage{{ asset($recipe->user->profile_image) }}" alt="" class="w-8 h-8 rounded-full border-2 border-white">
                                 <span class="ml-2 text-white text-sm bg-black bg-opacity-60 px-2 py-1 rounded-lg">{{ $recipe->user->name }}</span>
-                            </div>
+                            </div> 
                         </div>
                         <div class="p-4">
                             <h3 class="font-semibold text-lg mb-2">{{ $recipe->title }}</h3>

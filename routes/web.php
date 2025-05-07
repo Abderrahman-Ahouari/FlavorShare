@@ -80,3 +80,7 @@ Route::get('/users/{userId}/followers', [UserController::class, 'getFollowers'])
 
 // Get followings of a user
 Route::get('/users/{userId}/followings', [UserController::class, 'getFollowings'])->name('user.followings');
+
+
+Route::post('/recipes/{recipe}/like', [RecipeLikesController::class, 'like'])->name('recipe.like');
+Route::post('/recipes/{recipe}/favorite', [RecipeLikesController::class, 'favorite'])->name('recipe.favorite');
