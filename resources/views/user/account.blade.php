@@ -83,8 +83,12 @@
                 <div>
                     <h1 class="text-xl font-medium text-gray-800">{{ $user->name }}</h1> 
                     <div class="flex gap-6 mt-1 text-sm">
-                        <span><strong>{{ $followingCount }}</strong> Following</span>
-                        <span><strong>{{ $followersCount }}</strong> Followers</span>
+                        <a href="{{ route('user.followers', $user->id) }}" target="_blank" rel="noopener" class="...">
+                            <span><strong>{{ $followersCount }}</strong> Followers</span>
+                        </a>
+                        <a href="{{ route('user.followings', $user->id) }}" target="_blank" rel="noopener" class="...">
+                            <span><strong>{{ $followingCount }}</strong> Following</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -142,8 +146,7 @@
         <!-- Bio -->
         <div class="mt-4 px-6">
             <p class="text-gray-600">{{ $user->bio ?? 'No bio available' }}</p>
-            <button class="text-gray-500 text-sm mt-1 hover:text-gray-700" id="more-bio">...more</button>
-        </div>
+            </div>
     </div>
 
     <!-- Content Tabs -->
@@ -197,7 +200,7 @@
                             </div>
                         </div>
                         <div>
-                            <button id="edit-profile-btn" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">view more</button>
+                            <a target="span" href="{{ route('recipe_page', $recipe['id']) }}" class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600 transition">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -352,17 +355,7 @@
     </footer>
 
     <script>
-        // Toggle more/less for bio
-        document.getElementById('more-bio').addEventListener('click', function() {
-            const bioText = this.previousElementSibling;
-            if (this.textContent === '...more') {
-                bioText.classList.remove('line-clamp-2');
-                this.textContent = 'less';
-            } else {
-                bioText.classList.add('line-clamp-2');
-                this.textContent = '...more';
-            }
-        });
+
 
         // Tab switching
         const tabButtons = document.querySelectorAll('.tab-button');

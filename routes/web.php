@@ -61,7 +61,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // RecipeController routes
 Route::post('/recipes', [RecipeController::class, 'create'])->name('recipes.create');                                                                               
-Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete']);
 Route::get('/create_recipe_view', [RecipeController::class, 'create_recipe_view'])->name('create_recipe');
 Route::get('/recipes_view', [RecipeController::class, 'index'])->name('recipes_page');
 Route::post('/recipes/{recipe}/comments', [CommentController::class, 'create'])->name('comments.store');
