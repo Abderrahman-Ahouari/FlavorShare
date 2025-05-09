@@ -95,7 +95,7 @@
             <div class="md:w-1/2 mb-10 md:mb-0">
                 <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">HEALTHY COOKING RECIPES AND THE RIGHT NUTRITION</h1>
                 <p class="text-lg mb-8">Discover delicious, nutritious meals that are easy to prepare and will transform your approach to healthy eating.</p>
-                <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block">EXPLORE RECIPES</a>
+                <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block">EXPLORE RECIPES</a>
             </div>
             <div class="md:w-1/2 grid grid-cols-3 gap-4">
                 <div class="recipe-card col-span-1">
@@ -141,7 +141,7 @@
             <div class="md:w-1/2 md:pl-12 fade-in">
                 <h2 class="text-2xl md:text-4xl font-bold mb-6">HEALTHY AND QUALITY WITH A NEW FEEL</h2>
                 <p class="mb-8">Our recipes combine traditional cooking wisdom with modern nutritional science. We focus on whole ingredients, balanced macronutrients, and meals that satisfy both your body and taste buds.</p>
-                <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block">LEARN MORE</a>
+                <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block">LEARN MORE</a>
             </div>
         </div>
     </section>
@@ -155,7 +155,7 @@
             <div class="md:w-1/2 md:pr-12 fade-in">
                 <h2 class="text-2xl md:text-4xl font-bold mb-6">TASTE THE FUTURE OF GOOD FOOD</h2>
                 <p class="mb-8">We believe that healthy eating doesn't mean sacrificing flavor or satisfaction. Our innovative approach to cooking introduces new techniques and ingredient combinations that will revolutionize your kitchen experience.</p>
-                <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block">DISCOVER</a>
+                <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block">DISCOVER</a>
             </div>
         </div>
     </section>
@@ -169,25 +169,25 @@
                     <img src="http://127.0.0.1:8000/storage/assets/58q9ssssox2malve6cey.jpg.png" alt="Popular dish" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
                     <h3 class="text-xl font-semibold mb-2">Buddha Bowl with Tahini</h3>
                     <p class="text-gray-600 mb-3">A nourishing bowl packed with colorful vegetables, proteins, and a creamy tahini dressing that brings everything together.</p>
-                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
+                    <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
                 </div>
                 <div class="fade-in">
                     <img src="http://127.0.0.1:8000/storage/assets/okl0xaxft6552fjjtz2v.jpg.png" alt="Popular dish" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
                     <h3 class="text-xl font-semibold mb-2">Mediterranean Salad</h3>
                     <p class="text-gray-600 mb-3">Fresh vegetables, olives, and feta cheese drizzled with olive oil and herbs for a taste of the Mediterranean.</p>
-                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
+                    <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
                 </div>
                 <div class="fade-in">
                     <img src="http://127.0.0.1:8000/storage/assets/tont20fs91ztyywbv1w3.jpg.png" alt="Popular dish" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
                     <h3 class="text-xl font-semibold mb-2">Protein-Packed Breakfast</h3>
                     <p class="text-gray-600 mb-3">Start your day right with this energizing breakfast that combines whole grains, fruits, and quality proteins.</p>
-                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
+                    <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
                 </div>
                 <div class="fade-in">
                     <img src="http://127.0.0.1:8000/storage/assets/jep6d8153aqns3lmxkzz.jpg.png" alt="Popular dish" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
                     <h3 class="text-xl font-semibold mb-2">Vegetable Curry</h3>
                     <p class="text-gray-600 mb-3">A flavorful and aromatic curry that's both satisfying and packed with nutrients from seasonal vegetables.</p>
-                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
+                    <a href="{{ route('recipes_page') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md transition duration-300 inline-block mt-8">View More</a>
                 </div>
             </div>
         </div>

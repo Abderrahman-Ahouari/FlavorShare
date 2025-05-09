@@ -90,6 +90,7 @@
                 <h1 class="text-3xl font-bold mb-8 text-center md:text-left">login</h1>
                 
                 <form action="#" method="POST" class="space-y-6">
+                    @csrf
                     <div>
                         <label for="email" class="block text-flavorshare-orange mb-2">email</label>
                         <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-flavorshare-orange" required>

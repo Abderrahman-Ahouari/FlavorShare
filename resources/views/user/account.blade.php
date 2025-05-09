@@ -109,6 +109,10 @@
                 @else
                     <button id="edit-profile-btn" type="button" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Edit Profile</button>
                     <a href="{{ route('favorites_page') }}" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Favorites</a>    
+                    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="bg-orange-500 text-white px-4 py-1.5 rounded hover:bg-orange-600 transition">Logout</button>
+                    </form>
                 @endif
 
             </div>

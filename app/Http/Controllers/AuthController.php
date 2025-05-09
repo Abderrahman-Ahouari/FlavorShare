@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         Auth::login($user); 
 
-        // return redirect()->route('dashboard'); 
+        return redirect()->route('account_page', ['userId' => $user->id]);
     }
 
     // Login
@@ -39,11 +39,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {  
             $request->session()->regenerate(); 
-            // return redirect()->route('dashboard');
+            return redirect()->route('account_page', ['userId' => $user->id]);
         }
-
-        return back()->withErrors(['email' => 'Invalid credentials.']);
-    }
+    }   
 
     // Logout
     public function logout(Request $request)
@@ -53,7 +51,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
     }
 
     public function update(Request $request)

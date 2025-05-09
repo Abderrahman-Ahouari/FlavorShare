@@ -103,7 +103,9 @@
                                 <i class="fas fa-user"></i>
                             @endif
                         </div>
-                        <span class="text-gray-800">by {{ $recipe->user->name ?? 'Unknown' }}</span>
+                        <a href="{{ route('account_page', $recipe->user->id) }}">
+                            <span class="text-gray-800">by {{ $recipe->user->name ?? 'Unknown' }}</span>
+                        </a>
                         <div class="ml-auto flex items-center gap-2">
                             <button id="favorite-btn" class="flex items-center gap-1 text-gray-700">
                                 <i class="far fa-bookmark"></i>
