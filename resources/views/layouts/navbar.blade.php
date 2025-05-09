@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+
 <script>
     tailwind.config = {
         theme: {
@@ -45,7 +38,6 @@
     }
 </style>
 
-<body>
     @auth
     <!-- Header -->
     <header class="w-full py-4 px-4 md:px-16 flex justify-between items-center relative">
@@ -57,11 +49,10 @@
         <nav class="hidden md:flex items-center space-x-6">
             <a href="{{ route('contact_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
             <a href="{{ route('recipes_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
-            <a href="" class="text-flavorshare-text hover:text-flavorshare-orange"></a>
             <a href="{{ route('account_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Account</a>
             <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                 @csrf
-                <a href="{{ route('signup_page') }}" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">logout</a>
+                <button type="submit" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">Logout</button>
             </form>
         </nav>
         
@@ -74,11 +65,14 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-screen bg-white z-0 flex flex-col items-center justify-center space-y-6 md:hidden">
+            <a href="{{ route('home_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Home</a>
             <a href="{{ route('contact_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Contact us</a>
             <a href="{{ route('recipes_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Explore</a>
-            <a href="{{ route('account_page') }}" class="text-flavorshare-text hover:text-flavorshare-orange">Account</a>
-            <a href="{{ route('login_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Login</a>
-            <a href="{{ route('signup_page') }}" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">SignUp</a>
+            <a href="{{ route('account_page') }}" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50">Account</a>
+            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                @csrf
+                <button type="submit" class="px-6 py-2 bg-flavorshare-orange text-white rounded-md hover:bg-orange-500">Logout</button>
+            </form>
         </div>
     </header>
     @else
@@ -113,5 +107,20 @@
         </div>
     </header>
     @endauth
-</body>
-</html>
+
+<script>
+                // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+        
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                document.body.style.overflow = ''; // Re-enable scrolling when menu is closed
+            }
+        });
+    }
+</script>

@@ -415,20 +415,6 @@
             });
         }
 
-                // Mobile menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                if (mobileMenu.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-                } else {
-                    document.body.style.overflow = ''; // Re-enable scrolling when menu is closed
-                }
-            });
-        }
 
 
         $('#follow-btn').on('click', function() {
